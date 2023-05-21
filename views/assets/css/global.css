@@ -1,0 +1,128 @@
+/* Fonts Google - Ubuntu */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+/* Fonts Google - Nunito */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 62.5%;
+
+	/* Font family */
+	--ff-nunito: "Nunito", sans-serif;
+	--ff-ubuntu: "Ubuntu", sans-serif;
+
+	/* Colors */
+	--black: #111;
+	--white: #fff;
+	--light-gray: #f2f2f2;
+	--medium-gray: #d1d1d1;
+	--dark-gray: #a9a9a9;
+	--light-green: #00db33;
+	--medium-green: #00a827;
+	--dark-green: #005c15;
+	--vine: #800000;
+	--yellow: #fbff28;
+}
+
+body,
+#root {
+	width: 100%;
+	height: 100%;
+	min-height: 100vh;
+}
+
+a {
+	color: var(--black);
+	text-decoration: none;
+}
+
+picture {
+	display: block;
+}
+picture img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	max-block-size: 100%;
+	max-inline-size: 100%;
+}
+
+/* HEADER */
+:is(header.header-white, header.header-green) {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 85px;
+	padding: 8px 64px 8px 32px;
+}
+header.header-white {
+	background-color: var(--white);
+}
+header.header-green {
+	background-color: var(--medium-green);
+}
+
+:is(header.header-white, header.header-green) picture {
+	height: 100%;
+}
+
+:is(header.header-white, header.header-green) nav ul {
+	list-style: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 32px;
+}
+
+:is(header.header-white, header.header-green) nav ul li a {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	font-size: 2rem;
+	font-weight: 700;
+	font-family: var(--ff-nunito);
+}
+header.header-white nav ul li a {
+	color: var(--medium-green);
+}
+header.header-green nav ul li a {
+	color: var(--white);
+}
+
+:is(header.header-white, header.header-green) nav ul li a::after {
+	content: "";
+	width: 0%;
+	height: 2px;
+	display: block;
+	background-color: var(--vine);
+	transition: all 0.3s ease-in-out;
+}
+
+:is(header.header-white, header.header-green) nav ul li :is(a.active, a:not(.link-button):hover)::after {
+	width: 100%;
+}
+
+:is(header.header-white, header.header-green) nav ul li a.link-button {
+	padding: 6px 12px;
+	border-radius: 8px;
+	transition: all 0.3s ease-in-out;
+}
+header.header-white nav ul li a.link-button {
+	color: var(--white);
+	background-color: var(--medium-green);
+}
+header.header-green nav ul li a.link-button {
+	color: var(--medium-green);
+	background-color: var(--white);
+}
+header.header-white nav ul li a.link-button:hover {
+	background-color: var(--dark-green);
+}
+header.header-green nav ul li a.link-button:hover {
+	background-color: var(--light-gray);
+}
+/* END HEADER */
