@@ -1,15 +1,5 @@
 @import "./global.css";
 
-/* MAIN CONTAINER */
-main {
-	width: 100%;
-	padding: 128px 96px;
-	display: flex;
-	flex-direction: column;
-	gap: 56px;
-}
-/* END MAIN CONTAINER */
-
 /* PANCS */
 .pancs {
 	width: 100%;
