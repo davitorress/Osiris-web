@@ -158,6 +158,7 @@ footer .content .footer-links ul {
 	display: flex;
 	flex-direction: column;
 	gap: 24px;
+	list-style: none;
 }
 footer .content .footer-links ul li a {
 	font-weight: 700;
