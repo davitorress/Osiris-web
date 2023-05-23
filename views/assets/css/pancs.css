@@ -1,0 +1,64 @@
+@import "./global.css";
+
+/* MAIN CONTAINER */
+main {
+	width: 100%;
+	padding: 128px 96px;
+	display: flex;
+	flex-direction: column;
+	gap: 56px;
+}
+/* END MAIN CONTAINER */
+
+/* PANCS */
+.pancs {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+
+.pancs h1 {
+	font-size: 4.8rem;
+	color: var(--medium-green);
+	font-family: var(--ff-ubuntu);
+}
+
+.pancs .pancs-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 248px);
+	justify-content: space-between;
+	row-gap: 36px;
+}
+
+.pancs .pancs-grid .panc-item {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	cursor: pointer;
+}
+
+.pancs .pancs-grid .panc-item picture {
+	width: 248px;
+	height: 248px;
+	position: relative;
+}
+.pancs .pancs-grid .panc-item picture img:not(.favorite-icon) {
+	border-radius: 8px;
+}
+.pancs .pancs-grid .panc-item picture .favorite-icon {
+	top: 0;
+	right: 0;
+	z-index: 10;
+	width: 48px;
+	height: 48px;
+	cursor: pointer;
+	position: absolute;
+}
+
+.pancs .pancs-grid .panc-item h3 {
+	font-size: 2.4rem;
+	color: var(--dark-green);
+	font-family: var(--ff-nunito);
+}
+/* END PANCS */
