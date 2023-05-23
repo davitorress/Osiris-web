@@ -1,7 +1,358 @@
 @import "./global.css";
 
+/* HERO */
 .hero {
+	width: 100%;
+	padding: 96px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("/assets/img/hero-background.png");
 	background-size: cover;
 	background-position: center;
-	background: linear-gradient(0deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("/assets/img/hero-background.png");
 }
+
+.hero h1 {
+	font-size: 5.6rem;
+	color: var(--white);
+	font-family: var(--ff-ubuntu);
+}
+.hero h1 span {
+	color: var(--light-green);
+}
+
+.hero img {
+	width: 400px;
+}
+/* END HERO */
+
+/* ABOUT PANCS */
+.about {
+	width: 100%;
+	padding: 96px 96px 48px;
+	font-family: var(--ff-ubuntu);
+}
+
+.about .about-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.about .about-title h2 {
+	font-size: 4.8rem;
+	color: var(--medium-green);
+}
+
+.about .about-content {
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+
+.about .about-content .about-topics {
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+.about .about-content .about-topics :is(h3, ul li) {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+}
+.about .about-content .about-topics h3 {
+	font-size: 3.2rem;
+}
+.about .about-content .about-topics ul {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+.about .about-content .about-topics ul li {
+	font-weight: 500;
+	font-size: 2.4rem;
+}
+/* END ABOUT PANCS */
+
+/* PANCS */
+.pancs {
+	width: 100%;
+	padding: 48px 96px 96px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 112px;
+}
+
+.pancs h2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: fit-content;
+	font-size: 4.8rem;
+	text-align: center;
+	font-family: var(--ff-ubuntu);
+}
+.pancs h2::after {
+	width: 60%;
+	content: "";
+	height: 6px;
+	display: block;
+	border-radius: 6px;
+	background-color: var(--vine);
+}
+
+.pancs :is(.pancs-carousel, .pancs-list) {
+	width: 100%;
+}
+
+.pancs .pancs-carousel {
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+.pancs .pancs-carousel :is(.control-prev, .control-next) {
+	width: 56px;
+	height: 56px;
+	z-index: 10;
+	cursor: pointer;
+	position: absolute;
+}
+.pancs .pancs-carousel .control-prev {
+	left: 0;
+}
+.pancs .pancs-carousel .control-next {
+	right: 0;
+}
+
+.pancs .pancs-carousel .pancs-list {
+	display: flex;
+	justify-content: flex-start;
+	gap: 36px;
+	margin-left: 80px;
+	margin-right: 80px;
+	overflow: visible;
+	transition: transform 0.3s ease-in-out;
+}
+
+.pancs .pancs-carousel .pancs-list .panc-item {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	cursor: pointer;
+}
+
+.pancs .pancs-carousel .pancs-list .panc-item picture {
+	width: 248px;
+	height: 248px;
+}
+.pancs .pancs-carousel .pancs-list .panc-item picture img {
+	border-radius: 8px;
+}
+
+.pancs .pancs-carousel .pancs-list .panc-item h3 {
+	font-size: 2.4rem;
+	color: var(--dark-green);
+	font-family: var(--ff-nunito);
+}
+/* END PANCS */
+
+/* APP USER */
+.app-user {
+	width: 100%;
+	padding: 128px 96px;
+	display: flex;
+	gap: 96px;
+	background-color: var(--vine);
+}
+
+.app-user .text {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	color: var(--white);
+}
+
+.app-user .text h2 {
+	font-size: 4.8rem;
+	font-family: var(--ff-ubuntu);
+}
+
+.app-user .text p {
+	font-size: 3rem;
+	font-family: var(--ff-nunito);
+}
+
+.app-user .text .download-buttons {
+	display: flex;
+	gap: 24px;
+}
+
+.app-user .text .download-buttons img {
+	height: 62px;
+	cursor: pointer;
+}
+/* END APP USER */
+
+/* ABOUT RECIPES */
+.about-recipes {
+	width: 100%;
+	padding: 96px 96px 48px;
+	color: var(--white);
+	background-color: var(--dark-green);
+}
+
+.about-recipes .recipe-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 4.8rem;
+	font-family: var(--ff-ubuntu);
+}
+
+.about-recipes p {
+	font-size: 2.4rem;
+	font-family: var(--ff-nunito);
+}
+/* END ABOUT RECIPES */
+
+/* RECIPES */
+.recipes {
+	width: 100%;
+	padding: 48px 96px 96px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 112px;
+	color: var(--white);
+	background-color: var(--dark-green);
+}
+
+.recipes h2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: fit-content;
+	font-size: 4.8rem;
+	text-align: center;
+	font-family: var(--ff-ubuntu);
+}
+.recipes h2::after {
+	width: 60%;
+	content: "";
+	height: 6px;
+	display: block;
+	border-radius: 6px;
+	background-color: var(--vine);
+}
+
+.recipes :is(.recipes-carousel, .recipes-list) {
+	width: 100%;
+}
+
+.recipes .recipes-carousel {
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 24px;
+}
+
+.recipes .recipes-carousel :is(.control-prev, .control-next) {
+	width: 56px;
+	height: 56px;
+	z-index: 10;
+	cursor: pointer;
+	position: absolute;
+}
+.recipes .recipes-carousel .control-prev {
+	left: 0;
+}
+.recipes .recipes-carousel .control-next {
+	right: 0;
+}
+
+.recipes .recipes-carousel .recipes-list {
+	display: flex;
+	justify-content: flex-start;
+	gap: 36px;
+	margin-left: 80px;
+	margin-right: 80px;
+	overflow: visible;
+	transition: transform 0.3s ease-in-out;
+}
+
+.recipes .recipes-carousel .recipes-list .recipe-item {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	font-family: var(--ff-nunito);
+}
+
+.recipes .recipes-carousel .recipes-list .recipe-item picture {
+	width: 248px;
+	height: 248px;
+	cursor: pointer;
+}
+.recipes .recipes-carousel .recipes-list .recipe-item picture img {
+	border-radius: 8px;
+}
+
+.recipes .recipes-carousel .recipes-list .recipe-item .text {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.recipes .recipes-carousel .recipes-list .recipe-item h3 {
+	font-size: 2.4rem;
+}
+.recipes .recipes-carousel .recipes-list .recipe-item p {
+	font-weight: 700;
+	font-size: 2.2rem;
+	color: var(--light-green);
+}
+.recipes .recipes-carousel .recipes-list .recipe-item p img {
+	width: 22px;
+	cursor: pointer;
+}
+/* END RECIPES */
+
+/* APP FARMER */
+.app-farmer {
+	width: 100%;
+	padding: 128px 96px;
+	display: flex;
+	gap: 96px;
+	background-color: var(--vine);
+}
+
+.app-farmer .text {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	color: var(--white);
+}
+
+.app-farmer .text h2 {
+	font-size: 4.8rem;
+	font-family: var(--ff-ubuntu);
+}
+
+.app-farmer .text p {
+	font-size: 3rem;
+	font-family: var(--ff-nunito);
+}
+
+.app-farmer .text .download-buttons {
+	display: flex;
+	gap: 24px;
+}
+
+.app-farmer .text .download-buttons img {
+	height: 62px;
+	cursor: pointer;
+}
+/* END APP FARMER */
