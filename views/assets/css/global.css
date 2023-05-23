@@ -57,7 +57,7 @@ picture img {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	height: 85px;
+	height: 75px;
 	padding: 8px 64px 8px 32px;
 }
 header.header-white {
@@ -126,3 +126,69 @@ header.header-green nav ul li a.link-button:hover {
 	background-color: var(--light-gray);
 }
 /* END HEADER */
+
+/* FOOTER */
+footer {
+	color: var(--white);
+	background-color: var(--medium-green);
+}
+
+footer .content {
+	padding: 64px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+}
+footer .content h3 {
+	font-size: 3.6rem;
+}
+
+footer .content picture {
+	width: 216px;
+	height: 218px;
+}
+
+footer .content .footer-links {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	font-family: var(--ff-nunito);
+}
+footer .content .footer-links ul {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+footer .content .footer-links ul li a {
+	font-weight: 700;
+	font-size: 2.4rem;
+	color: var(--white);
+}
+
+footer .content .footer-app {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	font-family: var(--ff-nunito);
+}
+footer .content .footer-app p {
+	font-size: 2.4rem;
+}
+footer .content .footer-app .download-buttons {
+	display: flex;
+	gap: 24px;
+}
+footer .content .footer-app .download-buttons img {
+	height: 42px;
+	cursor: pointer;
+}
+
+footer .copyright {
+	padding: 8px 0;
+	font-weight: 700;
+	font-size: 1.8rem;
+	text-align: center;
+	font-family: var(--ff-ubuntu);
+	border-top: 4px solid var(--black);
+}
+/* END FOOTER */
