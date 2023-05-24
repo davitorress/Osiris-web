@@ -237,3 +237,36 @@ input[type="search"]::placeholder {
 	color: var(--medium-gray);
 }
 /* END INPUT SEARCH */
+
+/* BUTTON */
+button.btn {
+	padding: 10px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+
+	font-weight: 600;
+	color: var(--white);
+	font-family: var(--ff-nunito);
+
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background 0.3s ease-in-out;
+}
+
+button.btn-light {
+	background-color: var(--light-green);
+}
+button.btn-light:hover {
+	background-color: var(--medium-green);
+}
+
+button.btn-medium {
+	background-color: var(--medium-green);
+}
+button.btn-medium:hover {
+	background-color: var(--dark-green);
+}
+/* END BUTTON */
