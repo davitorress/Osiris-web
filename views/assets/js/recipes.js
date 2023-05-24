@@ -1,5 +1,4 @@
 const recipesItem = [...document.querySelectorAll(".recipe-item")];
-console.log(recipesItem);
 
 for (const recipeItem of recipesItem) {
 	recipeItem.addEventListener("click", (ev) => {
