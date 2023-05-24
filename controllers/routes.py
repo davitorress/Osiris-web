@@ -18,3 +18,14 @@ def init_app(app):
         # if request.args.get("fav"):
         # futuramente vai definir o valor de fav
         return render_template("panc.html")
+
+    @app.route("/receitas", methods=["GET", "POST"])
+    def receitas():
+        return render_template("receitas.html")
+
+    @app.route("/receitas/")
+    @app.route("/receitas/<string:id>")
+    def receita(id=None):
+        if id is None or len(id) == 0:
+            return redirect(url_for("receitas"))
+        return render_template("receita.html")

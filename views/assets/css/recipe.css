@@ -1,0 +1,85 @@
+@import "./global.css";
+
+/* TITLE SECTION */
+.title {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	column-gap: 56px;
+}
+
+.picture {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.picture picture {
+	width: 280px;
+	height: 280px;
+}
+.picture picture img {
+	border-radius: 24px;
+}
+
+.picture .fav-button {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-weight: 600;
+	font-size: 2.4rem;
+	color: var(--medium-green);
+	font-family: var(--ff-nunito);
+}
+.picture .fav-button img {
+	width: 38px;
+	height: 38px;
+}
+
+.description {
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+.description h1 {
+	font-size: 4.8rem;
+	color: var(--medium-green);
+	font-family: var(--ff-ubuntu);
+}
+.description p {
+	font-size: 2.4rem;
+	font-family: var(--ff-nunito);
+}
+.description ul {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+.description ul li {
+	display: flex;
+	gap: 8px;
+	font-size: 2.2rem;
+	font-weight: 600;
+	color: var(--medium-green);
+	font-family: var(--ff-nunito);
+}
+/* END TITLE SECTION */
+
+/* TEXT SECTION */
+.text {
+	width: 100%;
+	font-family: var(--ff-nunito);
+}
+.text h2 {
+	font-size: 3.6rem;
+	margin-bottom: 36px;
+}
+.text :is(ol, ul) li {
+	font-size: 2rem;
+}
+.text :is(ol, ul) li:not(:last-child) {
+	margin-bottom: 8px;
+}
+/* END TEXT SECTION */

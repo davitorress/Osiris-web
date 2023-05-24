@@ -1,0 +1,102 @@
+@import "./global.css";
+
+/* ACTIONS CONTAINER */
+.actions {
+	display: grid;
+	grid-template-columns: 70% 1fr;
+	gap: 56px;
+}
+
+button.create-recipe {
+	font-size: 2rem;
+}
+/* END ACTIONS CONTAINER */
+
+/* RECIPES */
+.recipes {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+
+.recipes h1 {
+	font-size: 4.8rem;
+	color: var(--medium-green);
+	font-family: var(--ff-ubuntu);
+}
+
+.recipes .recipes-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: space-between;
+	gap: 36px;
+}
+
+.recipes .recipes-grid .recipe-item {
+	display: flex;
+	gap: 24px;
+}
+
+.recipes .recipes-grid .recipe-item picture {
+	width: 248px;
+	height: 248px;
+	position: relative;
+	cursor: pointer;
+}
+.recipes .recipes-grid .recipe-item picture img:not(.favorite-icon) {
+	border-radius: 8px;
+}
+.recipes .recipes-grid .recipe-item picture .favorite-icon {
+	top: 0;
+	right: 0;
+	z-index: 10;
+	width: 48px;
+	height: 48px;
+	cursor: pointer;
+	position: absolute;
+}
+
+.recipes .recipes-grid .recipe-item .text {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.recipes .recipes-grid .recipe-item .text h3 {
+	font-size: 2.8rem;
+	color: var(--dark-green);
+	font-family: var(--ff-nunito);
+}
+
+.recipes .recipes-grid .recipe-item .text .like-button {
+	display: flex;
+	align-items: baseline;
+	gap: 10px;
+	font-size: 2.4rem;
+	font-weight: 700;
+	color: var(--light-green);
+	font-family: var(--ff-nunito);
+	cursor: pointer;
+}
+.recipes .recipes-grid .recipe-item .text .like-button img {
+	width: 26px;
+	height: 26px;
+}
+
+.recipes .recipes-grid .recipe-item .text ul {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	font-size: 2rem;
+	font-weight: 600;
+	color: var(--medium-green);
+	font-family: var(--ff-nunito);
+}
+.recipes .recipes-grid .recipe-item .text ul li {
+	display: flex;
+	gap: 8px;
+}
+/* END RECIPES */
