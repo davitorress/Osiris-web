@@ -1,4 +1,5 @@
 const recipesItem = [...document.querySelectorAll(".recipe-item")];
+const createRecipeBtn = document.querySelector("button.create-recipe");
 
 for (const recipeItem of recipesItem) {
 	recipeItem.addEventListener("click", (ev) => {
@@ -6,3 +7,8 @@ for (const recipeItem of recipesItem) {
 		window.location.href = origin + "/receitas/" + ev.currentTarget.id;
 	});
 }
+
+createRecipeBtn.addEventListener("click", async () => {
+	const origin = window.location.origin;
+	window.location.href = origin + "/receitas/criar";
+});

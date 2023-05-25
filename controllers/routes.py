@@ -29,3 +29,7 @@ def init_app(app):
         if id is None or len(id) == 0:
             return redirect(url_for("receitas"))
         return render_template("receita.html")
+
+    @app.route("/receitas/criar", methods=["GET", "POST"])
+    def receita_criar():
+        return render_template("criar-receita.html")
