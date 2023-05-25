@@ -37,3 +37,7 @@ def init_app(app):
     @app.route("/perfil")
     def perfil():
         return render_template("perfil.html")
+
+    @app.route("/perfil/editar", methods=["GET", "POST"])
+    def perfil_editar():
+        return render_template("editar-perfil.html")
