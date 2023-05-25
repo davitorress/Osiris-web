@@ -1,0 +1,156 @@
+@import "./global.css";
+
+/* MAIN CONTAINER */
+main {
+	flex-direction: row;
+	gap: 72px;
+}
+/* END MAIN CONTAINER */
+
+/* INFO CONTAINER */
+.info {
+	width: 256px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	font-family: var(--ff-nunito);
+}
+
+.info picture {
+	width: 256px;
+	height: 256px;
+}
+.info picture img {
+	border-radius: 99%;
+}
+
+.info h1 {
+	font-size: 4rem;
+}
+
+.info p {
+	display: flex;
+	gap: 12px;
+	font-weight: 600;
+	font-size: 2.4rem;
+}
+
+.info button {
+	font-size: 2.4rem;
+}
+/* END INFO CONTAINER */
+
+/* CAROUSELS CONTAINER */
+.content {
+	width: calc(100% - 256px);
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+}
+
+:is(.pancs, .recipes, .created) {
+	width: min-content;
+	max-width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+
+:is(.pancs, .recipes, .created) h2 {
+	font-size: 3.6rem;
+	color: var(--medium-green);
+	font-family: var(--ff-ubuntu);
+}
+
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .pancs-list, .recipes-carousel, .recipes-list, .created-carousel, .created-list) {
+	width: 100%;
+}
+
+:is(.pancs, .recipes, .created) :is(.pancs-carousel, .recipes-carousel, .created-carousel) {
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+	:is(.control-prev, .control-next) {
+	width: 48px;
+	height: 48px;
+	z-index: 10;
+	cursor: pointer;
+	position: absolute;
+}
+:is(.pancs, .recipes, .created) :is(.pancs-carousel, .recipes-carousel, .created-carousel) .control-prev {
+	left: 0;
+}
+:is(.pancs, .recipes, .created) :is(.pancs-carousel, .recipes-carousel, .created-carousel) .control-next {
+	right: 0;
+}
+
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+	:is(.pancs-list, .recipes-list, .created-list) {
+	display: flex;
+	justify-content: flex-start;
+	gap: 24px;
+	margin-left: calc(48px + 12px);
+	margin-right: calc(48px + 12px);
+	overflow: visible;
+	transition: transform 0.3s ease-in-out;
+}
+
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+	:is(.pancs-list, .recipes-list, .created-list)
+	:is(.panc-item, .recipe-item, .created-item) {
+	width: 184px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	cursor: pointer;
+}
+
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+	:is(.pancs-list, .recipes-list, .created-list)
+	:is(.panc-item, .recipe-item, .created-item)
+	picture {
+	width: 184px;
+	height: 184px;
+	position: relative;
+}
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+	:is(.pancs-list, .recipes-list, .created-list)
+	:is(.panc-item, .recipe-item, .created-item)
+	picture
+	img {
+	border-radius: 8px;
+}
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+	:is(.pancs-list, .recipes-list, .created-list)
+	:is(.panc-item, .recipe-item, .created-item)
+	picture
+	img.favorite-icon {
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 40px;
+	position: absolute;
+}
+
+:is(.pancs, .recipes, .created)
+	:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+	:is(.pancs-list, .recipes-list, .created-list)
+	:is(.panc-item, .recipe-item, .created-item)
+	h3 {
+	font-size: 2.4rem;
+	color: var(--dark-green);
+	font-family: var(--ff-nunito);
+}
+/* END CAROUSELS CONTAINER */

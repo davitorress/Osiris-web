@@ -33,3 +33,7 @@ def init_app(app):
     @app.route("/receitas/criar", methods=["GET", "POST"])
     def receita_criar():
         return render_template("criar-receita.html")
+
+    @app.route("/perfil")
+    def perfil():
+        return render_template("perfil.html")
