@@ -26,6 +26,7 @@
 	--medium-green: #00a827;
 	--dark-green: #005c15;
 	--vine: #800000;
+	--dark-vine: #610000;
 	--yellow: #fbff28;
 }
 
@@ -205,14 +206,8 @@ footer .copyright {
 }
 /* END FOOTER */
 
-/* INPUT SEARCH */
-input[type="search"]::-webkit-search-decoration,
-input[type="search"]::-webkit-search-cancel-button,
-input[type="search"]::-webkit-search-results-button,
-input[type="search"]::-webkit-search-results-decoration {
-	display: none;
-}
-input[type="search"] {
+/* INPUTS */
+:is(input, select, textarea) {
 	width: 100%;
 	padding: 10px 20px;
 
@@ -220,23 +215,48 @@ input[type="search"] {
 	color: var(--black);
 	font-family: var(--ff-nunito);
 
+	border: none;
 	appearance: none;
-	border-radius: 60px;
-	border: 1px solid var(--medium-gray);
+	border-radius: 8px;
+	background-color: var(--light-gray);
+}
+:is(input, select, textarea)::placeholder {
+	color: var(--medium-gray);
+}
+:is(input, select, textarea):focus {
+	outline: 2px solid var(--medium-gray);
+}
 
+:is(input[type="search"], select) {
 	background-size: 32px;
 	background-repeat: no-repeat;
 	background-position-y: center;
 	background-position-x: calc(100% - 20px);
+}
+
+select {
+	cursor: pointer;
+	background-image: url(../img/icons/chevron-down.svg);
+}
+
+textarea {
+	min-height: 100px;
+	resize: vertical;
+}
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+	display: none;
+}
+input[type="search"] {
+	border-radius: 60px;
+	background-color: var(--white);
+	border: 1px solid var(--medium-gray);
 	background-image: url(../img/icons/search-outline.svg);
 }
-input[type="search"]:focus {
-	outline: 2px solid var(--medium-gray);
-}
-input[type="search"]::placeholder {
-	color: var(--medium-gray);
-}
-/* END INPUT SEARCH */
+/* END INPUTs */
 
 /* BUTTON */
 button.btn {
@@ -268,5 +288,11 @@ button.btn-medium {
 }
 button.btn-medium:hover {
 	background-color: var(--dark-green);
+}
+button.btn-vine {
+	background-color: var(--vine);
+}
+button.btn-vine:hover {
+	background-color: var(--dark-vine);
 }
 /* END BUTTON */
