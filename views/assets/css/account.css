@@ -1,0 +1,94 @@
+@import "./global.css";
+
+/* ROOT PAGE */
+#root {
+	background-color: var(--medium-green);
+}
+/* END ROOT PAGE */
+
+/* MAIN CONTAINER */
+main {
+	padding: 0px 48px;
+	min-height: 100vh;
+	position: relative;
+	justify-content: center;
+}
+
+main .back-icon {
+	top: 36px;
+	left: 36px;
+	z-index: 10;
+	width: 56px;
+	height: 56px;
+	position: absolute;
+}
+/* END MAIN CONTAINER */
+
+/* CONTENT CONTAINER */
+.content {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 400px 1fr;
+	align-items: center;
+	gap: 112px;
+}
+
+.content picture {
+	width: 400px;
+	height: 400px;
+}
+/* END CONTENT CONTAINER */
+
+/* FORM */
+form {
+	width: 100%;
+	max-width: 600px;
+	display: flex;
+	flex-direction: column;
+	gap: 36px;
+}
+
+form h1 {
+	font-size: 4.8rem;
+	color: var(--white);
+	font-family: var(--ff-ubuntu);
+}
+
+form .inputs {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+form .inputs input {
+	padding: 6px;
+	color: var(--white);
+	background-color: transparent;
+	border-bottom: 2px solid var(--light-gray);
+}
+form .inputs input::placeholder {
+	color: var(--light-gray);
+}
+form .inputs input:focus {
+	outline: 2px solid var(--light-gray);
+}
+
+form .buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+form .buttons button {
+	font-size: 1.8rem;
+}
+form .buttons a {
+	font-size: 1.8rem;
+	color: var(--white);
+	font-family: var(--ff-nunito);
+}
+form .buttons a span {
+	font-weight: 900;
+	color: var(--vine);
+	text-decoration: underline;
+}
+/* END FORM */

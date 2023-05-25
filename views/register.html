@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Osiris</title>
+
+		<link rel="icon" href="/assets/img/logos/3_osiris.png" type="image/png" />
+		<link rel="stylesheet" href="/assets/css/account.css" />
+	</head>
+	<body>
+		<div id="root">
+			<main>
+				<img class="back-icon" src="/assets/img/icons/back.svg" alt="back icon" />
+
+				<section class="content">
+					<picture>
+						<img src="assets/img/logos/crop_2_osiris_white.png" alt="Osiris" />
+					</picture>
+
+					<form action="/register" method="post">
+						<h1>Crie sua conta</h1>
+
+						<div class="inputs">
+							<input type="text" name="name" id="name" placeholder="Digite o seu nome completo" />
+							<input type="email" name="email" id="email" placeholder="Digite o seu e-mail" />
+							<input type="password" name="pass" id="pass" placeholder="Digite a sua senha" />
+							<input type="password" name="confirm-pass" id="confirm-pass" placeholder="Digite novamente a sua senha" />
+						</div>
+
+						<div class="buttons">
+							<button type="submit" class="btn btn-vine">Cadastrar</button>
+							<a href="/login">Já possui uma conta? <span>Entre aqui!</span></a>
+						</div>
+					</form>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
