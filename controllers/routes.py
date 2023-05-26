@@ -1,6 +1,5 @@
 from flask import render_template, redirect, url_for, request, session
 
-from models import schemas
 from controllers.user import User
 from controllers.panc import Panc
 from controllers.recipe import Recipe
