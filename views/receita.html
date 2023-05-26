@@ -21,7 +21,11 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/pancs">PANCs</a></li>
 						<li><a href="/receitas" class="active">Receitas</a></li>
+						{% if userId %}
+						<li><a href="/perfil">Perfil</a></li>
+						{% else %}
 						<li><a href="/login" class="link-button">Login / Cadastro</a></li>
+						{% endif %}
 					</ul>
 				</nav>
 			</header>
@@ -30,29 +34,31 @@
 				<section class="title">
 					<section class="picture">
 						<picture>
-							<img src="/assets/img/recipes/sopa-de-cevadinha.jpg" alt="Ora-pro-nóbis" />
+							<img src="{{ recipe.imagem }}" alt="{{ recipe.nome }}" />
 						</picture>
-						<a href="/receitas/sopa-de-cevadinha?save=true" class="fav-button">
-							Salvar
+						<a href="/receitas/{{ recipe._id }}?save={{ not recipe.is_favorite }}" class="fav-button">
+							{% if recipe.is_favorite %} Salva
+							<img src="/assets/img/icons/bookmark-filled.svg" alt="bookmark filled" />
+							{% else %} Salvar
 							<img src="/assets/img/icons/bookmark-outline.svg" alt="bookmark outline" />
+							{% endif %}
 						</a>
-						<a href="/receitas/sopa-de-cevadinha?like=true" class="fav-button">
-							12,8k likes
-							<img src="/assets/img/icons/thumbs-up-outline-medium-green.svg" alt="thumbs up outline light green" />
+						<a href="/receitas/{{ recipe._id }}?like={{ not recipe.is_favorite }}" class="fav-button">
+							{{ recipe.likes }} likes
+							<img src="/assets/img/icons/thumbs-up-outline-medium-green.svg" alt="thumbs up outline medium green" />
 						</a>
 					</section>
 
 					<section class="description">
-						<h1>Sopa de cevadinha</h1>
-						<p>
-							Nessa sopa, a ora-pro-nóbis é combinada com cevadinha, linguiça, bacon, cenoura, batata, tomate e
-							alho-poró, além de ervas e temperos.
-						</p>
+						<h1>{{ recipe.nome }}</h1>
+						<p>{{ recipe.descricao }}</p>
 						<ul>
+							{% for panc in recipe.pancs %}
 							<li>
 								<img src="/assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-								Ora-pro-nóbis
+								{{ panc }}
 							</li>
+							{% endfor %}
 						</ul>
 					</section>
 				</section>
@@ -60,43 +66,18 @@
 				<section class="text">
 					<h2>Ingredientes</h2>
 					<ul>
-						<li>Linguiça picada a gosto</li>
-						<li>Bacon picado a gosto</li>
-						<li>Cebola desidratada a gosto</li>
-						<li>Alho-poró desidratado a gosto</li>
-						<li>Chimichuri a gosto</li>
-						<li>Gengibre a gosto</li>
-						<li>Cúrcuma a gosto</li>
-						<li>Mostarda em pó a gosto</li>
-						<li>1 folha de louro</li>
-						<li>3 cenouras pequenas picadinhas</li>
-						<li>4 batatas médias picadinhas</li>
-						<li>1 tomate picadinho</li>
-						<li>Alho-poró picado a gosto</li>
-						<li>1 xícara de cevadinha</li>
-						<li>3 xícaras de água filtrada</li>
-						<li>1 punhado de ora-pro-nóbis picado</li>
-						<li>Sal a gosto</li>
-						<li>Salsinha picada a gosto</li>
+						{% for ingrediente in recipe.ingredientes %}
+						<li>{{ ingrediente }}</li>
+						{% endfor %}
 					</ul>
 				</section>
 
 				<section class="text">
 					<h2>Modo de preparo</h2>
 					<ol>
-						<li>Em uma panela, frite a linguiça na própria gordura até dourar e reserve.</li>
-						<li>Na mesma panela, frite o bacon até dourar e reserve.</li>
-						<li>
-							Retorne a panela ao fogo e refogue a cebola desidratada com alho-poró desidratado, chimichurri, gengibre,
-							cúrcuma, mostarda em pó e louro.
-						</li>
-						<li>Adicione a cenoura, batata, tomate e alho-poró e refogue rapidamente.</li>
-						<li>Reserve tudo em um recipiente separado e retorne a panela ao fogo.</li>
-						<li>Coloque a cevadinha e a água e cozinhe por cerca de 30 minutos.</li>
-						<li>Quando a cevadinha estiver bem cozida, retorne à panela os legumes, o bacon e a linguiça.</li>
-						<li>Acrescente o ora-pro-nóbis e cozinhe por cerca de 10 minutos.</li>
-						<li>Tempere com sal e finalize com salsinha.</li>
-						<li>Agora é só servir! Bom apetite.</li>
+						{% for preparo in recipe.preparo %}
+						<li>{{ preparo }}</li>
+						{% endfor %}
 					</ol>
 				</section>
 			</main>

@@ -1,5 +1,3 @@
-from flask import request, jsonify
-from models.connection import connect
 from bson import ObjectId
 
 
@@ -18,3 +16,9 @@ class Panc:
         collection = db["panc"]
         pancs = collection.find({"nome": {"$regex": search, "$options": "i"}})
         return pancs
+
+    def get_panc(db, id, userId):
+        favorites = db["usuario"].find_one({"_id": ObjectId(userId)}).get("favoritos")
+        panc = db["panc"].find_one({"_id": ObjectId(id)})
+        panc["is_favorite"] = str(panc["_id"]) in favorites
+        return panc

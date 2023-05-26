@@ -22,7 +22,11 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/pancs">PANCs</a></li>
 						<li><a href="/receitas" class="active">Receitas</a></li>
+						{% if userId %}
+						<li><a href="/perfil">Perfil</a></li>
+						{% else %}
 						<li><a href="/login" class="link-button">Login / Cadastro</a></li>
+						{% endif %}
 					</ul>
 				</nav>
 			</header>
@@ -36,227 +40,65 @@
 					<button class="btn btn-medium create-recipe">Criar uma nova receita</button>
 				</section>
 
+				{% if search %}
 				<section class="recipes">
 					<h1>Receitas encontradas</h1>
 
 					<section class="recipes-grid">
-						<article class="recipe-item" id="sopa-de-cevadinha">
+						{% for item in search %}
+						<article class="recipe-item" id="{{ item._id }}">
 							<picture>
-								<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
+								<img src="{{ item.imagem }}" alt="{{ item.nome }}" />
 								<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
 							</picture>
 							<div class="text">
-								<h3>Sopa de cevadinha</h3>
-								<a href="/receitas/sopa-de-cevadinha?like=true" class="like-button">
-									10k likes
+								<h3>{{ item.nome }}</h3>
+								<a href="/receitas/{{ item._id }}?like=true" class="like-button">
+									{{ item.likes }} likes
 									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
 								</a>
 								<ul>
+									{% for panc in item.pancs %}
 									<li>
 										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
+										{{ panc }}
 									</li>
+									{% endfor %}
 								</ul>
 							</div>
 						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada amarga" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
-							</picture>
-							<div class="text">
-								<h3>Salada amarga</h3>
-								<a href="/receitas/salada-amarga?like=false" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Trapoeraba
-									</li>
-								</ul>
-							</div>
-						</article>
+						{% endfor %}
 					</section>
 				</section>
+				{% endif %}
 
 				<section class="recipes">
 					<h1>Receitas</h1>
 
 					<section class="recipes-grid">
-						<article class="recipe-item" id="sopa-de-cevadinha">
+						{% for recipe in recipes %}
+						<article class="recipe-item" id="{{ recipe._id }}">
 							<picture>
-								<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
+								<img src="{{ recipe.imagem }}" alt="{{ recipe.nome }}" />
 								<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
 							</picture>
 							<div class="text">
-								<h3>Sopa de cevadinha</h3>
-								<a href="/receitas/sopa-de-cevadinha?like=true" class="like-button">
-									10k likes
+								<h3>{{ recipe.nome }}</h3>
+								<a href="/receitas/{{ recipe._id }}?like=true" class="like-button">
+									{{ recipe.likes }} likes
 									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
 								</a>
 								<ul>
+									{% for panc in recipe.pancs %}
 									<li>
 										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
+										{{ panc }}
 									</li>
+									{% endfor %}
 								</ul>
 							</div>
 						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada amarga" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
-							</picture>
-							<div class="text">
-								<h3>Salada amarga</h3>
-								<a href="/receitas/salada-amarga?like=false" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Trapoeraba
-									</li>
-								</ul>
-							</div>
-						</article>
-						<article class="recipe-item" id="sopa-de-cevadinha">
-							<picture>
-								<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
-							</picture>
-							<div class="text">
-								<h3>Sopa de cevadinha</h3>
-								<a href="/receitas/sopa-de-cevadinha?like=true" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-								</ul>
-							</div>
-						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada amarga" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
-							</picture>
-							<div class="text">
-								<h3>Salada amarga</h3>
-								<a href="/receitas/salada-amarga?like=false" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Trapoeraba
-									</li>
-								</ul>
-							</div>
-						</article>
-						<article class="recipe-item" id="sopa-de-cevadinha">
-							<picture>
-								<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
-							</picture>
-							<div class="text">
-								<h3>Sopa de cevadinha</h3>
-								<a href="/receitas/sopa-de-cevadinha?like=true" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-								</ul>
-							</div>
-						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada amarga" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
-							</picture>
-							<div class="text">
-								<h3>Salada amarga</h3>
-								<a href="/receitas/salada-amarga?like=false" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Trapoeraba
-									</li>
-								</ul>
-							</div>
-						</article>
-						<article class="recipe-item" id="sopa-de-cevadinha">
-							<picture>
-								<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
-							</picture>
-							<div class="text">
-								<h3>Sopa de cevadinha</h3>
-								<a href="/receitas/sopa-de-cevadinha?like=true" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-								</ul>
-							</div>
-						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada amarga" />
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
-							</picture>
-							<div class="text">
-								<h3>Salada amarga</h3>
-								<a href="/receitas/salada-amarga?like=false" class="like-button">
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</a>
-								<ul>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Ora-pro-nóbis
-									</li>
-									<li>
-										<img src="assets/img/icons/leaf-filled.svg" alt="leaf filled" />
-										Trapoeraba
-									</li>
-								</ul>
-							</div>
-						</article>
+						{% endfor %}
 					</section>
 				</section>
 			</main>

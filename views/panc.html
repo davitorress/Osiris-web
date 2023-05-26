@@ -21,7 +21,11 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/pancs" class="active">PANCs</a></li>
 						<li><a href="/receitas">Receitas</a></li>
+						{% if userId %}
+						<li><a href="/perfil">Perfil</a></li>
+						{% else %}
 						<li><a href="/login" class="link-button">Login / Cadastro</a></li>
+						{% endif %}
 					</ul>
 				</nav>
 			</header>
@@ -30,71 +34,31 @@
 				<section class="title">
 					<section class="picture">
 						<picture>
-							<img src="/assets/img/pancs/ora-pro-nobis.jpg" alt="Ora-pro-nóbis" />
+							<img src="{{ panc.imagem }}" alt="{{ panc.nome }}" />
 						</picture>
-						<a href="/pancs/ora-pro-nobis?fav=true" class="fav-button">
-							Favoritar
+						<a href="/pancs/{{ panc._id }}?fav={{ not panc.is_favorite }}" class="fav-button">
+							{% if panc.is_favorite %} Favorita
+							<img src="/assets/img/icons/heart-filled.svg" alt="heart filled" />
+							{% else %} Favoritar
 							<img src="/assets/img/icons/heart-outline.svg" alt="heart outline" />
+							{% endif %}
 						</a>
 					</section>
 
 					<section class="description">
-						<h1>Ora-pro-nóbis</h1>
-						<p>
-							A ora-pro-nóbis é um tipo de planta trepadeira altamente nutritiva: tem alto teor de proteínas, fibras,
-							vitaminas e minerais importantes. Ela possui folhas verde-escuras e macias, que podem ser usadas no
-							preparo de saladas e chás.
-						</p>
+						<h1>{{ panc.nome }}</h1>
+						<p>{{ panc.descricao }}</p>
 					</section>
 				</section>
 
 				<section class="text">
 					<h2>Benefícios</h2>
-					<p>
-						A ora-pro-nóbis, também conhecida como Pereskia aculeata, é uma planta valorizada por sua riqueza
-						nutricional e versatilidade culinária. Rica em nutrientes essenciais, fibras e antioxidantes, ela oferece
-						benefícios como melhoria da digestão, fortalecimento do sistema imunológico, redução da inflamação e
-						contribuição para a saúde óssea. Sua inclusão na dieta pode promover uma alimentação equilibrada e saudável.
-					</p>
+					<p>{{ panc.beneficios }}</p>
 				</section>
 
 				<section class="text paragraph">
 					<h2>Modo de cultivo</h2>
-					<p>
-						Início: A variedade mais indicada para cultivo com fins comerciais é a que produz flores brancas. Elas podem
-						ser fornecidas por órgãos de extensão rural ou em feiras de produtores
-					</p>
-					<p>
-						Plantio: Sua rusticidade permite que seja cultivada em diversos tipos de solo, inclusive não exige que eles
-						sejam férteis. A ora-pro-nóbis também se desenvolve em ambientes com incidência de sol ou meia-sombra.
-						Inicie o plantio no começo do período das chuvas. A hortaliça é resistente à seca, mas o acesso à água nessa
-						fase do cultivo estimula o crescimento dos ramos.
-					</p>
-					<p>
-						Propagação: A ora-pro-nóbis é propagada por meio de estacas. Para conseguir melhor pegamento das mudas, use
-						a região localizada entre as partes mais tenras e as mais lenhosas da haste. Corte cada estaca com 20
-						centímetros de comprimento e enterre um terço dele em substrato composto por uma parte de terra de subsolo e
-						outra de esterco curtido. Após o enraizamento, transplante as mudas para o local definitivo.
-					</p>
-					<p>
-						Espaçamento: Varia de acordo com a finalidade do cultivo. A ora-pro-nóbis pode ser usada como cerca viva,
-						ornamentação e para consumo das folhas. Se a prioridade for o alimento, pode-se adensar o espaçamento,
-						deixando de 1 a 1,30 metro entre fileiras e de 40 a 60 centímetros entre plantas. Mas as folhas podem ser
-						consumidas em qualquer caso, mesmo se a destinação tiver fins ornamentais ou a construção de cerca viva.
-					</p>
-					<p>
-						Cuidados: Embora seja pouco exigente em adubações, mantenha bom nível de matéria orgânica no solo para um
-						pleno desenvolvimento das plantas e boa produção de folhas. Faça manutenção a cada dois meses e execute
-						podas dos ramos a cada 75 a 90 dias na estação chuvosa e a cada 90 a 100 dias na estação seca, quando a
-						planta deve ser irrigada.
-					</p>
-					<p>
-						Produção: A partir de três meses após o plantio, pode ser iniciada a colheita das folhas da ora-pro-nóbis -
-						após a poda dos galhos. As folhas devem apresentar de 7 a 10 centímetros de comprimento. Coloque luvas para
-						a hora da coleta, a fim de evitar ferimentos pelos espinhos. Em geral, cada corte rende entre 2.500 e 5.000
-						quilos de folhas por hectare, variação que ocorre de acordo com a condução e a época de desenvolvimento da
-						cultura.
-					</p>
+					<p>{{ panc.cultivo }}</p>
 				</section>
 			</main>
 

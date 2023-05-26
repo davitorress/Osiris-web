@@ -22,7 +22,11 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/pancs">PANCs</a></li>
 						<li><a href="/receitas">Receitas</a></li>
-						<li><a href="/perfil" class="active">Perfil</a></li>
+						{% if userId %}
+						<li><a href="/perfil">Perfil</a></li>
+						{% else %}
+						<li><a href="/login" class="link-button">Login / Cadastro</a></li>
+						{% endif %}
 					</ul>
 				</nav>
 			</header>
