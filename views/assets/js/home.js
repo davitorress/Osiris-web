@@ -61,3 +61,21 @@ recipeControlNext.addEventListener("click", () => {
 		recipesList.style.transform = "translateX(0%)";
 	}
 });
+
+const pancsItems = [...document.querySelectorAll(".panc-item")];
+
+for (const pancItem of pancsItems) {
+	pancItem.addEventListener("click", (ev) => {
+		const origin = window.location.origin;
+		window.location.href = origin + "/pancs/" + ev.currentTarget.id;
+	});
+}
+
+const recipesItems = [...document.querySelectorAll(".recipe-item")];
+
+for (const recipeItem of recipesItems) {
+	recipeItem.addEventListener("click", (ev) => {
+		const origin = window.location.origin;
+		window.location.href = origin + "/receitas/" + ev.currentTarget.id;
+	});
+}
