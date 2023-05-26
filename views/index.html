@@ -100,36 +100,14 @@
 					/>
 
 					<section class="pancs-list">
-						<article class="panc-item">
+						{% for panc in pancs %}
+						<article class="panc-item" id="{{ panc._id }}">
 							<picture>
-								<img src="assets/img/pancs/vinagreira.jpg" alt="Vinagreira" />
+								<img src="{{ panc.imagem }}" alt="{{ panc.nome }}" />
 							</picture>
-							<h3>Vinagreira</h3>
+							<h3>{{ panc.nome }}</h3>
 						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/ora-pro-nobis.jpg" alt="Ora-pro-nóbis" />
-							</picture>
-							<h3>Ora-pro-nóbis</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/peixinho.jpg" alt="Peixinho" />
-							</picture>
-							<h3>Peixinho</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/trapoeraba.jpg" alt="Trapoeraba" />
-							</picture>
-							<h3>Trapoeraba</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/caruru.jpg" alt="Caruru" />
-							</picture>
-							<h3>Caruru</h3>
-						</article>
+						{% endfor %}
 					</section>
 
 					<img
@@ -182,54 +160,20 @@
 					/>
 
 					<section class="recipes-list">
-						<article class="recipe-item">
+						{% for recipe in recipes %}
+						<article class="recipe-item" id="{{ recipe._id }}">
 							<picture>
-								<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada Amarga" />
+								<img src="{{ recipe.imagem }}" alt="{{ recipe.nome }}" />
 							</picture>
 							<div class="text">
-								<h3>Salada Amarga</h3>
+								<h3>{{ recipe.nome }}</h3>
 								<p>
-									10k likes
+									{{ recipe.likes }} likes
 									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
 								</p>
 							</div>
 						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
-							</picture>
-							<div class="text">
-								<h3>Sopa de cevadinha</h3>
-								<p>
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</p>
-							</div>
-						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/suco-verde.jpg" alt="Suco verde" />
-							</picture>
-							<div class="text">
-								<h3>Suco verde</h3>
-								<p>
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</p>
-							</div>
-						</article>
-						<article class="recipe-item">
-							<picture>
-								<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
-							</picture>
-							<div class="text">
-								<h3>Sopa de cevadinha</h3>
-								<p>
-									10k likes
-									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
-								</p>
-							</div>
-						</article>
+						{% endfor %}
 					</section>
 
 					<img

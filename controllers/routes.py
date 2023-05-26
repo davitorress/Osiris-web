@@ -1,10 +1,14 @@
 from flask import render_template, redirect, url_for, request
+from controllers.panc import Panc
+from controllers.recipe import Recipe
 
 
-def init_app(app):
+def init_app(app, con):
     @app.route("/")
     def index():
-        return render_template("index.html")
+        pancs = Panc.get_highlight(con)
+        recipes = Recipe.get_more_liked(con)
+        return render_template("index.html", pancs=pancs, recipes=recipes)
 
     @app.route("/login", methods=["GET", "POST"])
     def login():
@@ -20,7 +24,11 @@ def init_app(app):
 
     @app.route("/pancs", methods=["GET", "POST"])
     def pancs():
-        return render_template("pancs.html")
+        pancs = Panc.get_all(con)
+        if request.method == "POST":
+            search = Panc.get_search(con, request.form.get("search-panc"))
+            return render_template("pancs.html", pancs=pancs, search=search)
+        return render_template("pancs.html", pancs=pancs)
 
     @app.route("/pancs/")
     @app.route("/pancs/<string:id>")

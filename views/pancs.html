@@ -32,115 +32,37 @@
 					<input type="search" name="search-panc" id="search-panc" placeholder="Busque por plantas" />
 				</form>
 
+				{% if search %}
 				<section class="pancs">
 					<h1>PANCs encontradas</h1>
 
 					<section class="pancs-grid">
-						<article class="panc-item" id="bertalha">
+						{% for item in search %}
+						<article class="panc-item" id="{{ item._id }}">
 							<picture>
-								<img src="assets/img/pancs/bertalha.jpg" alt="Bertalha" />
+								<img src="{{ item.imagem }}" alt="{{ item.nome }}" />
 								<img class="favorite-icon" src="assets/img/icons/favorite-outline.svg" alt="favorite outline" />
 							</picture>
-							<h3>Bertalha</h3>
+							<h3>{{ item.nome }}</h3>
 						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/beldroega.jpg" alt="Beldroega" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Beldroega</h3>
-						</article>
+						{% endfor %}
 					</section>
 				</section>
+				{% endif %}
 
 				<section class="pancs">
 					<h1>PANCs</h1>
 
 					<section class="pancs-grid">
-						<article class="panc-item">
+						{% for panc in pancs %}
+						<article class="panc-item" id="{{ panc._id }}">
 							<picture>
-								<img src="assets/img/pancs/azedinha.jpg" alt="Azedinha" />
+								<img src="{{ panc.imagem }}" alt="{{ panc.nome }}" />
 								<img class="favorite-icon" src="assets/img/icons/favorite-outline.svg" alt="favorite outline" />
 							</picture>
-							<h3>Azedinha</h3>
+							<h3>{{ panc.nome }}</h3>
 						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/beldroega.jpg" alt="Beldroega" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Beldroega</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/bertalha.jpg" alt="Bertalha" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Bertalha</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/capuchinha.jpg" alt="Capuchinha" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Capuchinha</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/caruru.jpg" alt="Caruru" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Caruru</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/jambu.jpg" alt="Jambu" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Jambu</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/ora-pro-nobis.jpg" alt="Ora-pro-nóbis" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Ora-pro-nóbis</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/peixinho.jpg" alt="Peixinho" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Peixinho</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/serralha.jpg" alt="Serralha" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Serralha</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/taioba.jpg" alt="Taioba" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Taioba</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/trapoeraba.jpg" alt="Trapoeraba" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Trapoeraba</h3>
-						</article>
-						<article class="panc-item">
-							<picture>
-								<img src="assets/img/pancs/vinagreira.jpg" alt="Vinagreira" />
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-							</picture>
-							<h3>Vinagreira</h3>
-						</article>
+						{% endfor %}
 					</section>
 				</section>
 			</main>
