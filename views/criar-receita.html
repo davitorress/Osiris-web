@@ -32,39 +32,66 @@
 			</header>
 
 			<main>
-				<h1>Cadastrar uma nova receita</h1>
-				<form action="/receitas/criar" method="post">
+				<h1>{{ "Editar a receita" if recipe else "Cadastrar uma nova receita" }}</h1>
+				<form method="post">
 					<div class="input-container">
 						<label for="recipe-img">Imagem demonstrativa:</label>
-						<div class="input-container"></div>
-						<input type="hidden" name="recipe-img_base64" id="recipe-img_base64" />
+						<div class="input-container">
+							{% if recipe %}
+							<picture>
+								<img src="{{ recipe.imagem }}" alt="" />
+							</picture>
+							<div class="rotate-icons">
+								<img src="/assets/img/icons/rotate-right.svg" alt="rotate right" />
+								<img src="/assets/img/icons/rotate-left.svg" alt="rotate left" />
+							</div>
+							{% endif %}
+						</div>
+						<input
+							type="hidden"
+							name="recipe-img_base64"
+							id="recipe-img_base64"
+							value="{{ recipe.imagem if recipe else '' }}"
+						/>
 						<input type="file" name="recipe-img" id="recipe-img" accept=".png, .jpg, .jpeg" hidden />
 						<button type="button" class="btn btn-light">Alterar imagem</button>
 					</div>
 
 					<div class="input-container">
 						<label for="recipe-name">Nome:</label>
-						<input type="text" name="recipe-name" id="recipe-name" placeholder="Digite o nome da receita" />
+						<input
+							type="text"
+							name="recipe-name"
+							id="recipe-name"
+							placeholder="Digite o nome da receita"
+							value="{{ recipe.nome if recipe else '' }}"
+						/>
 					</div>
 
 					<div class="input-container">
 						<label for="recipe-description">Descrição curta:</label>
-						<textarea
-							name="recipe-description"
-							id="recipe-description"
-							placeholder="Digite a descrição da receita"
-						></textarea>
+						<textarea name="recipe-description" id="recipe-description" placeholder="Digite a descrição da receita">
+{{ recipe.descricao if recipe else '' }}</textarea
+						>
 						<p class="text-right char-counter"><span>0</span>/120 caracteres</p>
 					</div>
 
 					<div class="input-container">
 						<label for="recipe-pancs">PANCs:</label>
 						<div class="fields fields-panc">
+							{% if recipe %} {% for panc in recipe.pancs %}
 							<select name="recipe-pancs[]">
-								<option value="Ora-pro-nóbis">Ora-pro-nóbis</option>
-								<option value="Vinagreira">Vinagreira</option>
-								<option value="Peixinho">Peixinho</option>
+								{% for name in pancs %} {% set selected = 'selected' if panc == name else '' %}
+								<option value="{{ name }}" {{ selected }}>{{ name }}</option>
+								{% endfor %}
 							</select>
+							{% endfor %} {% else %}
+							<select name="recipe-pancs[]">
+								{% for name in pancs %}
+								<option value="{{ name }}">{{ name }}</option>
+								{% endfor %}
+							</select>
+							{% endif %}
 						</div>
 						<p class="text-right" id="add-panc">+ Adicionar campo</p>
 						<p class="text-right" id="remove-panc">Remover o último campo</p>
@@ -73,7 +100,16 @@
 					<div class="input-container">
 						<label for="recipe-ingredients">Ingredientes (colocar medida):</label>
 						<div class="fields fields-ingredient">
+							{% if recipe %} {% for ingredient in recipe.ingredientes %}
+							<input
+								type="text"
+								name="recipe-ingredients[]"
+								placeholder="Exemplo: 1 colher de sal"
+								value="{{ ingredient }}"
+							/>
+							{% endfor %} {% else %}
 							<input type="text" name="recipe-ingredients[]" placeholder="Exemplo: 1 colher de sal" />
+							{% endif %}
 						</div>
 						<p class="text-right" id="add-ingredient">+ Adicionar campo</p>
 						<p class="text-right" id="remove-ingredient">Remover o último campo</p>
@@ -82,10 +118,20 @@
 					<div class="input-container">
 						<label for="recipe-prepare">Modo de preparo (separado em passos):</label>
 						<div class="fields fields-prepare">
+							{% if recipe %} {% for prepare in recipe.preparo %}
+							<div>
+								<h3><span>{{ loop.index }}</span>° Passo</h3>
+								<textarea name="recipe-prepare[]" placeholder="Exemplo: Misture todos os ingredientes secos">
+{{ prepare }}
+								</textarea
+								>
+							</div>
+							{% endfor %} {% else %}
 							<div>
 								<h3><span>1</span>° Passo</h3>
 								<textarea name="recipe-prepare[]" placeholder="Exemplo: Misture todos os ingredientes secos"></textarea>
 							</div>
+							{% endif %}
 						</div>
 						<p class="text-right" id="add-prepare">+ Adicionar campo</p>
 						<p class="text-right" id="remove-prepare">Remover o último campo</p>
