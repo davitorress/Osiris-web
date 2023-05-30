@@ -43,7 +43,7 @@
 							<img src="/assets/img/icons/bookmark-outline.svg" alt="bookmark outline" />
 							{% endif %}
 						</a>
-						<a href="/receitas/{{ recipe._id }}?like={{ not recipe.is_favorite }}" class="fav-button">
+						<a href="/receitas/{{ recipe._id }}?like=true" class="fav-button">
 							{{ recipe.likes }} likes
 							<img src="/assets/img/icons/thumbs-up-outline-medium-green.svg" alt="thumbs up outline medium green" />
 						</a>
