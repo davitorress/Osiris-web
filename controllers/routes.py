@@ -124,11 +124,16 @@ def init_app(app, con):
     @app.route("/perfil")
     def perfil():
         if "userId" in session:
-            return render_template("perfil.html")
+            user = User.get_info(con)
+            return render_template("perfil.html", userId=session["userId"], user=user)
         return redirect(url_for("login"))
 
     @app.route("/perfil/editar", methods=["GET", "POST"])
     def perfil_editar():
         if "userId" in session:
-            return render_template("editar-perfil.html")
+            if request.method == "POST":
+                User.edit(con, request.form, request.files)
+                return redirect(url_for("perfil"))
+            user = User.get_info(con)
+            return render_template("editar-perfil.html", user=user)
         return redirect(url_for("login"))

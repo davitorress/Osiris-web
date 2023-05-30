@@ -22,33 +22,33 @@
 						<li><a href="/">Home</a></li>
 						<li><a href="/pancs">PANCs</a></li>
 						<li><a href="/receitas">Receitas</a></li>
-						{% if userId %}
-						<li><a href="/perfil">Perfil</a></li>
-						{% else %}
-						<li><a href="/login" class="link-button">Login / Cadastro</a></li>
-						{% endif %}
+						<li><a href="/perfil" class="active">Perfil</a></li>
 					</ul>
 				</nav>
 			</header>
 
 			<main>
 				<picture>
+					{% if user.imagem %}
+					<img id="avatar" src="{{ user.imagem }}" alt="{{ user.nome }}" />
+					{% else %}
 					<img id="avatar" src="/assets/img/icons/avatar.svg" alt="Avatar" />
+					{% endif %}
 					<img class="edit-icon" src="/assets/img/icons/edit.svg" alt="edit" />
 				</picture>
 
-				<form action="/perfil/editar" method="post" enctype="multipart/form-data">
+				<form method="post" enctype="multipart/form-data">
 					<input type="text" name="img_base64" id="img_base64" hidden />
 					<input type="file" name="img" id="img" accept=".png, .jpg, .jpeg" hidden />
 
 					<div class="input-container">
 						<label for="name">Nome completo:</label>
-						<input type="text" name="name" id="name" />
+						<input type="text" name="name" id="name" value="{{ user.nome }}" />
 					</div>
 
 					<div class="input-container">
 						<label for="email">Email:</label>
-						<input type="email" name="email" id="email" />
+						<input type="email" name="email" id="email" value="{{ user.email }}" />
 					</div>
 
 					<div class="input-container">
@@ -57,7 +57,7 @@
 					</div>
 
 					<div class="buttons">
-						<button type="reset" class="btn btn-vine">Cancelar</button>
+						<button type="reset" class="btn btn-vine" onclick="redirect('/perfil')">Cancelar</button>
 						<button type="submit" class="btn btn-light">Salvar</button>
 					</div>
 				</form>

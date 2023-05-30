@@ -1,3 +1,4 @@
+from flask import session
 from bson import ObjectId
 import bcrypt
 
@@ -45,3 +46,43 @@ class User:
 
     def new_recipe(db, id, recipeId):
         db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"receitas": recipeId}})
+
+    def get_info(db):
+        user = dict(db["usuario"].find_one({"_id": ObjectId(session["userId"])}))
+
+        for index, p in enumerate(user["favoritos"]):
+            panc = db["panc"].find_one({"_id": ObjectId(p)})
+            user["favoritos"][index] = panc
+        for index, s in enumerate(user["salvos"]):
+            recipe = db["receita"].find_one({"_id": ObjectId(s)})
+            user["salvos"][index] = recipe
+        for index, r in enumerate(user["receitas"]):
+            recipe = db["receita"].find_one({"_id": ObjectId(r)})
+            user["receitas"][index] = recipe
+
+        return user
+
+    def edit(db, data, files):
+        if data.get("new-pass"):
+            db["usuario"].update_one(
+                {"_id": ObjectId(session["userId"])},
+                {
+                    "$set": {
+                        "nome": data.get("name"),
+                        "email": data.get("email"),
+                        "senha": bcrypt.hashpw(data.get("new-pass").encode("utf-8"), bcrypt.gensalt()),
+                        "imagem": data.get("img_base64"),
+                    }
+                },
+            )
+        else:
+            db["usuario"].update_one(
+                {"_id": ObjectId(session["userId"])},
+                {
+                    "$set": {
+                        "nome": data.get("name"),
+                        "email": data.get("email"),
+                        "imagem": data.get("img_base64"),
+                    }
+                },
+            )

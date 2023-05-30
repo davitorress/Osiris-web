@@ -23,7 +23,7 @@
 						<li><a href="/pancs">PANCs</a></li>
 						<li><a href="/receitas">Receitas</a></li>
 						{% if userId %}
-						<li><a href="/perfil">Perfil</a></li>
+						<li><a href="/perfil" class="active">Perfil</a></li>
 						{% else %}
 						<li><a href="/login" class="link-button">Login / Cadastro</a></li>
 						{% endif %}
@@ -34,20 +34,29 @@
 			<main>
 				<section class="info">
 					<picture>
+						{% if user.imagem %}
+						<img src="{{ user.imagem }}" alt="{{ user.nome }}" />
+						{% else %}
 						<img src="assets/img/icons/avatar.svg" alt="Avatar" />
+						{% endif %}
 					</picture>
-					<h1>João da Silva</h1>
+					<h1>{{ user.nome }}</h1>
 					<p>
 						<img src="assets/img/icons/mail-outline.svg" alt="mail outline" />
-						joao@gmail.com
+						{{ user.email }}
 					</p>
-					<button class="btn btn-medium">
+					<button class="btn btn-medium" onclick="redirect('/perfil/editar')">
 						Editar
+						<img src="assets/img/icons/edit-filled.svg" alt="edit filled" />
+					</button>
+					<button class="btn btn-medium" onclick="redirect('/logout')">
+						Sair
 						<img src="assets/img/icons/edit-filled.svg" alt="edit filled" />
 					</button>
 				</section>
 
 				<section class="content">
+					{% if user.favoritos %}
 					<section class="pancs">
 						<h2>PANCs favoritas</h2>
 
@@ -59,41 +68,14 @@
 							/>
 
 							<section class="pancs-list">
-								<article class="panc-item">
+								{% for p in user.favoritos %}
+								<article class="panc-item" id="{{ p._id }}">
 									<picture>
-										<img src="assets/img/pancs/vinagreira.jpg" alt="Vinagreira" />
-										<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
+										<img src="{{ p.imagem }}" alt="{{ p.nome }}" />
 									</picture>
-									<h3>Vinagreira</h3>
+									<h3>{{ p.nome }}</h3>
 								</article>
-								<article class="panc-item">
-									<picture>
-										<img src="assets/img/pancs/ora-pro-nobis.jpg" alt="Ora-pro-nóbis" />
-										<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-									</picture>
-									<h3>Ora-pro-nóbis</h3>
-								</article>
-								<article class="panc-item">
-									<picture>
-										<img src="assets/img/pancs/peixinho.jpg" alt="Peixinho" />
-										<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-									</picture>
-									<h3>Peixinho</h3>
-								</article>
-								<article class="panc-item">
-									<picture>
-										<img src="assets/img/pancs/trapoeraba.jpg" alt="Trapoeraba" />
-										<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-									</picture>
-									<h3>Trapoeraba</h3>
-								</article>
-								<article class="panc-item">
-									<picture>
-										<img src="assets/img/pancs/caruru.jpg" alt="Caruru" />
-										<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
-									</picture>
-									<h3>Caruru</h3>
-								</article>
+								{% endfor %}
 							</section>
 
 							<img
@@ -103,7 +85,7 @@
 							/>
 						</section>
 					</section>
-
+					{% endif %} {% if user.salvos %}
 					<section class="recipes">
 						<h2>Receitas salvas</h2>
 
@@ -115,27 +97,14 @@
 							/>
 
 							<section class="recipes-list">
-								<article class="recipe-item">
+								{% for s in user.salvos %}
+								<article class="recipe-item" id="{{ s._id }}">
 									<picture>
-										<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada amarga" />
-										<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
+										<img src="{{ s.imagem }}" alt="{{ s.nome }}" />
 									</picture>
-									<h3>Salada amarga</h3>
+									<h3>{{ s.nome }}</h3>
 								</article>
-								<article class="recipe-item">
-									<picture>
-										<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
-										<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
-									</picture>
-									<h3>Sopa de cevadinha</h3>
-								</article>
-								<article class="recipe-item">
-									<picture>
-										<img src="assets/img/recipes/suco-verde.jpg" alt="Suco verde" />
-										<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
-									</picture>
-									<h3>Suco verde</h3>
-								</article>
+								{% endfor %}
 							</section>
 
 							<img
@@ -145,7 +114,7 @@
 							/>
 						</section>
 					</section>
-
+					{% endif %} {% if user.receitas %}
 					<section class="created">
 						<h2>Receitas criadas</h2>
 
@@ -157,27 +126,17 @@
 							/>
 
 							<section class="created-list">
-								<article class="created-item">
+								{% for r in user.receitas %}
+								<article class="created-item" id="{{ r._id }}">
 									<picture>
-										<img src="assets/img/recipes/salada-amarga.jpg" alt="Salada amarga" />
-										<img class="favorite-icon" src="assets/img/icons/edit-button.svg" alt="edit button filled" />
+										<img src="{{ r.imagem }}" alt="{{ r.nome }}" />
+										<a href="/receitas/{{ r._id }}/editar">
+											<img class="favorite-icon" src="assets/img/icons/edit-button.svg" alt="edit button filled" />
+										</a>
 									</picture>
-									<h3>Salada amarga</h3>
+									<h3>{{ r.nome }}</h3>
 								</article>
-								<article class="created-item">
-									<picture>
-										<img src="assets/img/recipes/sopa-de-cevadinha.jpg" alt="Sopa de cevadinha" />
-										<img class="favorite-icon" src="assets/img/icons/edit-button.svg" alt="edit button filled" />
-									</picture>
-									<h3>Sopa de cevadinha</h3>
-								</article>
-								<article class="created-item">
-									<picture>
-										<img src="assets/img/recipes/suco-verde.jpg" alt="Suco verde" />
-										<img class="favorite-icon" src="assets/img/icons/edit-button.svg" alt="edit button filled" />
-									</picture>
-									<h3>Suco verde</h3>
-								</article>
+								{% endfor %}
 							</section>
 
 							<img
@@ -187,13 +146,14 @@
 							/>
 						</section>
 					</section>
+					{% endif %}
 				</section>
 			</main>
 
 			<footer>
 				<section class="content">
 					<picture>
-						<img src="/assets/img/logos/3_osiris_white.png" alt="Osiris" />
+						<img src="assets/img/logos/3_osiris_white.png" alt="Osiris" />
 					</picture>
 
 					<section class="footer-links">
@@ -216,8 +176,8 @@
 						</p>
 
 						<div class="download-buttons">
-							<img src="/assets/img/download-play-store.png" alt="download play store" />
-							<img src="/assets/img/download-apple-store.png" alt="download apple store" />
+							<img src="assets/img/download-play-store.png" alt="download play store" />
+							<img src="assets/img/download-apple-store.png" alt="download apple store" />
 						</div>
 					</section>
 				</section>
