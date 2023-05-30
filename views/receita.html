@@ -36,6 +36,12 @@
 						<picture>
 							<img src="{{ recipe.imagem }}" alt="{{ recipe.nome }}" />
 						</picture>
+						{% if recipe.author %}
+						<a href="/receitas/{{ recipe._id }}/editar" class="fav-button">
+							Editar
+							<img src="/assets/img/icons/edit.svg" alt="edit icon" />
+						</a>
+						{% endif %}
 						<a href="/receitas/{{ recipe._id }}?save={{ not recipe.is_favorite }}" class="fav-button">
 							{% if recipe.is_favorite %} Salva
 							<img src="/assets/img/icons/bookmark-filled.svg" alt="bookmark filled" />
