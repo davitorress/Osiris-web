@@ -97,6 +97,11 @@ def init_app(app, con):
         userId = None
         if "userId" in session:
             userId = session["userId"]
+        if request.method == "POST":
+            recipe = Recipe.create(con, request.form, request.files)
+            if userId is not None:
+                User.new_recipe(con, userId, recipe)
+            return redirect("/receitas/" + recipe)
         pancs = Panc.get_all_names(con)
         return render_template("criar-receita.html", userId=userId, pancs=pancs)
 
@@ -109,6 +114,11 @@ def init_app(app, con):
             return redirect(url_for("receitas"))
         pancs = Panc.get_all_names(con)
         recipe = Recipe.get_recipe(con, id, userId)
+        if not recipe["author"]:
+            return redirect(url_for("receitas"))
+        if request.method == "POST":
+            Recipe.edit(con, id, request.form, request.files)
+            return redirect("/receitas/" + id)
         return render_template("criar-receita.html", userId=userId, pancs=pancs, recipe=recipe)
 
     @app.route("/perfil")
