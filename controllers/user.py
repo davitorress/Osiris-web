@@ -42,3 +42,6 @@ class User:
                 db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"salvos": recipeId}})
         else:
             db["usuario"].update_one({"_id": ObjectId(id)}, {"$pull": {"salvos": recipeId}})
+
+    def new_recipe(db, id, recipeId):
+        db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"receitas": recipeId}})
