@@ -22,7 +22,7 @@ def init_app(app, con):
         if request.method == "POST":
             userId = User.login(con, request.form.get("email"), request.form.get("pass"))
             if userId:
-                session["userId"] = userId
+                session["userId"] = str(userId)
                 return redirect("/")
         return render_template("login.html")
 
@@ -38,7 +38,7 @@ def init_app(app, con):
         if request.method == "POST":
             userId = User.register(con, request.form.get("name"), request.form.get("email"), request.form.get("pass"))
             if userId:
-                session["userId"] = userId
+                session["userId"] = str(userId)
                 return redirect("/")
         return render_template("register.html")
 
@@ -47,9 +47,9 @@ def init_app(app, con):
         userId = None
         if "userId" in session:
             userId = session["userId"]
-        pancs = Panc.get_all(con)
+        pancs = Panc.get_all(con, userId)
         if request.method == "POST":
-            search = Panc.get_search(con, request.form.get("search-panc"))
+            search = Panc.get_search(con, userId, request.form.get("search-panc"))
             return render_template("pancs.html", userId=userId, pancs=pancs, search=search)
         return render_template("pancs.html", userId=userId, pancs=pancs)
 
@@ -71,9 +71,9 @@ def init_app(app, con):
         userId = None
         if "userId" in session:
             userId = session["userId"]
-        recipes = Recipe.get_all(con)
+        recipes = Recipe.get_all(con, userId)
         if request.method == "POST":
-            search = Recipe.get_search(con, request.form.get("search-recipe"))
+            search = Recipe.get_search(con, userId, request.form.get("search-recipe"))
             return render_template("receitas.html", userId=userId, recipes=recipes, search=search)
         return render_template("receitas.html", userId=userId, recipes=recipes)
 
@@ -85,12 +85,31 @@ def init_app(app, con):
         userId = None
         if "userId" in session:
             userId = session["userId"]
+        if request.args.get("save") is not None and userId is not None:
+            User.set_recipe_favorite(con, userId, id, request.args.get("save"))
+        if request.args.get("like") is not None and userId is not None:
+            Recipe.add_like(con, id)
         recipe = Recipe.get_recipe(con, id, userId)
         return render_template("receita.html", userId=userId, recipe=recipe)
 
     @app.route("/receitas/criar", methods=["GET", "POST"])
     def receita_criar():
-        return render_template("criar-receita.html")
+        userId = None
+        if "userId" in session:
+            userId = session["userId"]
+        pancs = Panc.get_all_names(con)
+        return render_template("criar-receita.html", userId=userId, pancs=pancs)
+
+    @app.route("/receitas/<string:id>/editar", methods=["GET", "POST"])
+    def receita_editar(id=None):
+        userId = None
+        if "userId" in session:
+            userId = session["userId"]
+        if id is None or len(id) == 0 or userId is None:
+            return redirect(url_for("receitas"))
+        pancs = Panc.get_all_names(con)
+        recipe = Recipe.get_recipe(con, id, userId)
+        return render_template("criar-receita.html", userId=userId, pancs=pancs, recipe=recipe)
 
     @app.route("/perfil")
     def perfil():
