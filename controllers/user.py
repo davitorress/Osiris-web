@@ -34,3 +34,11 @@ class User:
                 db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"favoritos": pancId}})
         else:
             db["usuario"].update_one({"_id": ObjectId(id)}, {"$pull": {"favoritos": pancId}})
+
+    def set_recipe_favorite(db, id, recipeId, fav):
+        if eval(fav):
+            favorited = db["usuario"].find_one({"_id": ObjectId(id), "salvos": recipeId})
+            if not favorited:
+                db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"salvos": recipeId}})
+        else:
+            db["usuario"].update_one({"_id": ObjectId(id)}, {"$pull": {"salvos": recipeId}})
