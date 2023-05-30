@@ -33,7 +33,7 @@
 
 			<main>
 				<h1>{{ "Editar a receita" if recipe else "Cadastrar uma nova receita" }}</h1>
-				<form method="post">
+				<form method="post" enctype="multipart/form-data">
 					<div class="input-container">
 						<label for="recipe-img">Imagem demonstrativa:</label>
 						<div class="input-container">
@@ -42,8 +42,8 @@
 								<img src="{{ recipe.imagem }}" alt="" />
 							</picture>
 							<div class="rotate-icons">
-								<img src="/assets/img/icons/rotate-right.svg" alt="rotate right" />
-								<img src="/assets/img/icons/rotate-left.svg" alt="rotate left" />
+								<img src="/assets/img/icons/rotate-right.svg" alt="rotate right" onclick="rotate()" />
+								<img src="/assets/img/icons/rotate-left.svg" alt="rotate left" onclick="rotate()" />
 							</div>
 							{% endif %}
 						</div>
@@ -52,6 +52,16 @@
 							name="recipe-img_base64"
 							id="recipe-img_base64"
 							value="{{ recipe.imagem if recipe else '' }}"
+						/>
+						<input
+							type="number"
+							name="recipe-img_angle"
+							id="recipe-img_angle"
+							min="0"
+							max="180"
+							step="180"
+							value="0"
+							hidden
 						/>
 						<input type="file" name="recipe-img" id="recipe-img" accept=".png, .jpg, .jpeg" hidden />
 						<button type="button" class="btn btn-light">Alterar imagem</button>
@@ -138,8 +148,22 @@
 					</div>
 
 					<div class="buttons">
-						<button type="reset" class="btn btn-vine cancel-button">Cancelar</button>
+						{% if recipe %}
+						<button
+							type="reset"
+							onclick="redirect('/receitas/{{ recipe._id }}/excluir')"
+							class="btn btn-vine cancel-button"
+						>
+							Excluir
+						</button>
+						<button type="reset" onclick="redirect('/receitas/{{ recipe._id }}')" class="btn btn-vine cancel-button">
+							Cancelar
+						</button>
+						<button type="submit" class="btn btn-light submit-button">Editar</button>
+						{% else %}
+						<button type="reset" onclick="redirect('/receitas/')" class="btn btn-vine cancel-button">Cancelar</button>
 						<button type="submit" class="btn btn-light submit-button">Cadastrar</button>
+						{% endif %}
 					</div>
 				</form>
 			</main>
