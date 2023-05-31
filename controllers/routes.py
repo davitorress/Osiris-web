@@ -137,3 +137,21 @@ def init_app(app, con):
             user = User.get_info(con)
             return render_template("editar-perfil.html", user=user)
         return redirect(url_for("login"))
+
+    @app.route("/api/panc/fav", methods=["POST"])
+    def panc_fav():
+        if "userId" in session:
+            User.set_panc_favorite(con, session["userId"], request.get_json()["id"], str(request.get_json()["fav"]))
+        return "success"
+
+    @app.route("/api/recipe/fav", methods=["POST"])
+    def recipe_fav():
+        if "userId" in session:
+            User.set_recipe_favorite(con, session["userId"], request.get_json()["id"], str(request.get_json()["fav"]))
+        return "success"
+
+    @app.route("/api/recipe/like", methods=["POST"])
+    def recipe_like():
+        if "userId" in session:
+            Recipe.add_like(con, request.get_json()["id"])
+        return "success"

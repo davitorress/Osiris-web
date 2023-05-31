@@ -50,14 +50,18 @@
 							<picture>
 								<img src="{{ item.imagem }}" alt="{{ item.nome }}" />
 								{% if item.is_favorite %}
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
+								<a href="" onclick="favRecipe('{{ item._id }}', false)">
+									<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
+								</a>
 								{% else %}
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
+								<a href="" onclick="favRecipe('{{ item._id }}', true)">
+									<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
+								</a>
 								{% endif %}
 							</picture>
 							<div class="text">
 								<h3>{{ item.nome }}</h3>
-								<a href="/receitas/{{ item._id }}?like=true" class="like-button">
+								<a href="" onclick="likeRecipe('{{ item._id }}')" class="like-button">
 									{{ item.likes }} likes
 									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
 								</a>
@@ -85,14 +89,18 @@
 							<picture>
 								<img src="{{ recipe.imagem }}" alt="{{ recipe.nome }}" />
 								{% if recipe.is_favorite %}
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
+								<a href="" onclick="favRecipe('{{ recipe._id }}', false)">
+									<img class="favorite-icon" src="assets/img/icons/save-recipe-filled.svg" alt="save recipe filled" />
+								</a>
 								{% else %}
-								<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
+								<a href="" onclick="favRecipe('{{ recipe._id }}', true)">
+									<img class="favorite-icon" src="assets/img/icons/save-recipe-outline.svg" alt="save recipe outline" />
+								</a>
 								{% endif %}
 							</picture>
 							<div class="text">
 								<h3>{{ recipe.nome }}</h3>
-								<a href="/receitas/{{ recipe._id }}?like=True" class="like-button">
+								<a href="" onclick="likeRecipe('{{ recipe._id }}')" class="like-button">
 									{{ recipe.likes }} likes
 									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
 								</a>

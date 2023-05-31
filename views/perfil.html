@@ -72,6 +72,9 @@
 								<article class="panc-item" id="{{ p._id }}">
 									<picture>
 										<img src="{{ p.imagem }}" alt="{{ p.nome }}" />
+										<a href="" onclick="favPanc('{{ p._id }}', false)">
+											<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
+										</a>
 									</picture>
 									<h3>{{ p.nome }}</h3>
 								</article>
@@ -101,6 +104,13 @@
 								<article class="recipe-item" id="{{ s._id }}">
 									<picture>
 										<img src="{{ s.imagem }}" alt="{{ s.nome }}" />
+										<a href="" onclick="favRecipe('{{ s._id }}', false)">
+											<img
+												class="favorite-icon"
+												src="assets/img/icons/save-recipe-filled.svg"
+												alt="save recipe filled"
+											/>
+										</a>
 									</picture>
 									<h3>{{ s.nome }}</h3>
 								</article>

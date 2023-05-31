@@ -46,9 +46,13 @@
 							<picture>
 								<img src="{{ item.imagem }}" alt="{{ item.nome }}" />
 								{% if item.is_favorite %}
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
+								<a href="" onclick="favPanc('{{ item._id }}', false)">
+									<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
+								</a>
 								{% else %}
-								<img class="favorite-icon" src="assets/img/icons/favorite-outline.svg" alt="favorite outline" />
+								<a href="" onclick="favPanc('{{ item._id }}', true)">
+									<img class="favorite-icon" src="assets/img/icons/favorite-outline.svg" alt="favorite outline" />
+								</a>
 								{% endif %}
 							</picture>
 							<h3>{{ item.nome }}</h3>
@@ -67,9 +71,13 @@
 							<picture>
 								<img src="{{ panc.imagem }}" alt="{{ panc.nome }}" />
 								{% if panc.is_favorite %}
-								<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
+								<a href="" onclick="favPanc('{{ panc._id }}', false)">
+									<img class="favorite-icon" src="assets/img/icons/favorite-filled.svg" alt="favorite filled" />
+								</a>
 								{% else %}
-								<img class="favorite-icon" src="assets/img/icons/favorite-outline.svg" alt="favorite outline" />
+								<a href="" onclick="favPanc('{{ panc._id }}', true)">
+									<img class="favorite-icon" src="assets/img/icons/favorite-outline.svg" alt="favorite outline" />
+								</a>
 								{% endif %}
 							</picture>
 							<h3>{{ panc.nome }}</h3>
