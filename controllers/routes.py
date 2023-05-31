@@ -121,6 +121,17 @@ def init_app(app, con):
             return redirect("/receitas/" + id)
         return render_template("criar-receita.html", userId=userId, pancs=pancs, recipe=recipe)
 
+    @app.route("/receitas/<string:id>/excluir")
+    def receita_excluir(id=None):
+        userId = None
+        if "userId" in session:
+            userId = session["userId"]
+        if id is None or len(id) == 0 or userId is None:
+            return redirect(url_for("receitas"))
+        Recipe.delete(con, id)
+        User.remove_recipe(con, id)
+        return redirect(url_for("receitas"))
+
     @app.route("/perfil")
     def perfil():
         if "userId" in session:

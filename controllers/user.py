@@ -47,6 +47,10 @@ class User:
     def new_recipe(db, id, recipeId):
         db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"receitas": recipeId}})
 
+    def remove_recipe(db, recipeId):
+        if "userId" in session:
+            db["usuario"].update_one({"_id": ObjectId(session["userId"])}, {"$pull": {"receitas": recipeId}})
+
     def get_info(db):
         user = dict(db["usuario"].find_one({"_id": ObjectId(session["userId"])}))
 

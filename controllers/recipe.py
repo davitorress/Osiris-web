@@ -103,3 +103,7 @@ class Recipe:
                 }
             },
         )
+
+    def delete(db, id):
+        if "userId" in session:
+            db["receita"].delete_one({"_id": ObjectId(id)})
