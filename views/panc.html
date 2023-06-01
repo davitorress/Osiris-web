@@ -58,7 +58,9 @@
 
 				<section class="text paragraph">
 					<h2>Modo de cultivo</h2>
-					<p>{{ panc.cultivo }}</p>
+					{% for farm in panc.cultivo %}
+					<p>{{ farm }}</p>
+					{% endfor %}
 				</section>
 			</main>
 

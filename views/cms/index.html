@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Osiris - CMS</title>
+
+		<link rel="icon" href="/assets/img/logos/3_osiris_white.png" type="image/png" />
+		<link rel="stylesheet" href="/assets/css/cms.css" />
+		<script src="/assets/js/cms.js" defer></script>
+	</head>
+	<body>
+		<div id="root">
+			<header>
+				<div class="content">
+					<picture>
+						<img src="/assets/img/logos/3_osiris_white.png" alt="Osiris" onclick="redirect('')" />
+					</picture>
+
+					<nav>
+						<ul>
+							<h2>
+								<img src="/assets/img/icons/leaf-filled-white.svg" alt="leaf filled white" />
+								PANCs
+							</h2>
+							<li><a href="/cms/pancs/criar">Criar</a></li>
+						</ul>
+					</nav>
+
+					<a href="/cms/logout">
+						Sair
+						<img src="/assets/img/icons/log-out-outline.svg" alt="log out outline" />
+					</a>
+				</div>
+			</header>
+
+			<main>
+				<table>
+					<thead>
+						<tr>
+							<th>Imagem</th>
+							<th>Nome</th>
+							<th>Descrição</th>
+							<th colspan="2">Ações</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for p in pancs %}
+						<tr>
+							<td>
+								<picture>
+									<img src="{{ p.imagem }}" alt="{{ p.nome }}" />
+								</picture>
+							</td>
+							<td>{{ p.nome }}</td>
+							<td>{{ p.descricao }}</td>
+							<td>
+								<button class="btn btn-medium" onclick="redirect('/pancs/{{ p._id }}/editar')">Editar</button>
+							</td>
+							<td>
+								<button class="btn btn-vine" onclick="redirect('/pancs/{{ p._id }}/excluir')">Excluir</button>
+							</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</main>
+		</div>
+	</body>
+</html>

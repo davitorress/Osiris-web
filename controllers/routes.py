@@ -3,6 +3,7 @@ from flask import render_template, redirect, url_for, request, session
 from controllers.user import User
 from controllers.panc import Panc
 from controllers.recipe import Recipe
+from controllers.admin import Admin
 
 
 def init_app(app, con):
@@ -166,3 +167,56 @@ def init_app(app, con):
         if "userId" in session:
             Recipe.add_like(con, request.get_json()["id"])
         return "success"
+
+    @app.route("/cms")
+    def cms_index():
+        if not "admin" in session:
+            return redirect(url_for("cms_login"))
+        pancs = Panc.get_all(con, None)
+        return render_template("cms/index.html", pancs=pancs)
+
+    @app.route("/cms/login", methods=["GET", "POST"])
+    def cms_login():
+        if "admin" in session:
+            return redirect(url_for("cms_index"))
+        if request.method == "POST":
+            adminId = Admin.login(con, request.form)
+            if adminId:
+                session["admin"] = str(adminId)
+                return redirect(url_for("cms_index"))
+        return render_template("cms/login.html")
+
+    @app.route("/cms/logout")
+    def cms_logout():
+        session.pop("admin", None)
+        return redirect(url_for("index"))
+
+    @app.route("/cms/pancs/criar", methods=["GET", "POST"])
+    def cms_panc_criar():
+        if not "admin" in session:
+            return redirect(url_for("cms_login"))
+        if request.method == "POST":
+            Panc.create(con, request.form, request.files)
+            return redirect(url_for("cms_index"))
+        return render_template("cms/criar-panc.html")
+
+    @app.route("/cms/pancs/<string:id>/editar", methods=["GET", "POST"])
+    def cms_panc_editar(id=None):
+        if not "admin" in session:
+            return redirect(url_for("cms_login"))
+        if id is None or len(id) == 0:
+            return redirect(url_for("cms_index"))
+        if request.method == "POST":
+            Panc.edit(con, id, request.form, request.files)
+            return redirect(url_for("cms_index"))
+        panc = Panc.get_panc(con, id, None)
+        return render_template("cms/criar-panc.html", panc=panc)
+
+    @app.route("/cms/pancs/<string:id>/excluir")
+    def cms_panc_excluir(id=None):
+        if not "admin" in session:
+            return redirect(url_for("cms_login"))
+        if id is None or len(id) == 0:
+            return redirect(url_for("cms_index"))
+        Panc.delete(con, id)
+        return redirect(url_for("cms_index"))

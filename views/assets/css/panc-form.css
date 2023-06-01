@@ -1,0 +1,87 @@
+@import "./cms.css";
+
+h1 {
+	font-size: 4.8rem;
+	color: var(--medium-green);
+	font-family: var(--ff-ubuntu);
+}
+
+/* FORM */
+form {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	font-family: var(--ff-nunito);
+}
+
+.input-container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.input-container label {
+	font-weight: 600;
+	font-size: 2.4rem;
+	color: var(--medium-green);
+}
+
+.input-container picture {
+	width: 248px;
+	height: 248px;
+}
+.input-container picture img {
+	border-radius: 8px;
+}
+
+.input-container :is(.rotate-icons, button) {
+	width: 248px;
+}
+
+.input-container .rotate-icons {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+}
+.input-container .rotate-icons img {
+	cursor: pointer;
+}
+
+.input-container button {
+	font-size: 2rem;
+}
+
+.input-container p.text-right {
+	text-align: end;
+	font-weight: 600;
+	font-size: 1.6rem;
+	color: var(--dark-green);
+}
+
+.input-container :is(#add-farm, #remove-farm) {
+	cursor: pointer;
+}
+
+.input-container :is(.fields, .fields div) {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.input-container .fields div {
+	font-size: 1.6rem;
+	color: var(--medium-green);
+}
+
+.buttons {
+	display: flex;
+	gap: 24px;
+}
+
+.buttons :is(.cancel-button, .submit-button) {
+	font-size: 2rem;
+	width: 200px;
+}
+/* END FORM */

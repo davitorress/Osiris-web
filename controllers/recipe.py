@@ -3,8 +3,7 @@ import cv2
 import base64
 import numpy as np
 from PIL import Image
-from flask import request, session
-from models.connection import connect
+from flask import session
 from bson import ObjectId
 
 
@@ -56,7 +55,7 @@ class Recipe:
         img_pil = Image.open(io.BytesIO(files["recipe-img"].read()))
         image = np.array(img_pil)
         img_height, img_width = image.shape[0], image.shape[1]
-        img_matrix = cv2.getRotationMatrix2D((img_height / 2, img_width / 2), int(data.get("recipe-img_angle")), 1.0)
+        img_matrix = cv2.getRotationMatrix2D((img_width / 2, img_height / 2), int(data.get("recipe-img_angle")), 1.0)
         img_rotated = cv2.warpAffine(image, img_matrix, (img_width, img_height))
         img_rgb = cv2.cvtColor(img_rotated, cv2.COLOR_BGR2RGB)
         _, img_base64 = cv2.imencode("." + img_pil.format.lower(), img_rgb)
@@ -84,7 +83,7 @@ class Recipe:
 
         image = np.array(img_pil)
         img_height, img_width = image.shape[0], image.shape[1]
-        img_matrix = cv2.getRotationMatrix2D((img_height / 2, img_width / 2), int(data.get("recipe-img_angle")), 1.0)
+        img_matrix = cv2.getRotationMatrix2D((img_width / 2, img_height / 2), int(data.get("recipe-img_angle")), 1.0)
         img_rotated = cv2.warpAffine(image, img_matrix, (img_width, img_height))
         img_rgb = cv2.cvtColor(img_rotated, cv2.COLOR_BGR2RGB)
         _, img_base64 = cv2.imencode("." + img_pil.format.lower(), img_rgb)

@@ -1,0 +1,113 @@
+@import "./global.css";
+
+#root {
+	display: grid;
+	grid-template-columns: 150px 1fr;
+}
+
+main {
+	padding: 48px 24px;
+}
+
+/* HEADER */
+header {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 28px 0;
+	background-color: var(--medium-green);
+	position: relative;
+}
+
+header .content {
+	min-height: 100vh;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	gap: 48px;
+	position: fixed;
+}
+
+header .content picture {
+	width: 96px;
+	height: 96px;
+	cursor: pointer;
+}
+
+header .content nav ul {
+	list-style: none;
+	color: var(--white);
+	font-family: var(--ff-ubuntu);
+}
+
+header .content nav ul h2 {
+	font-size: 2.2rem;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+header .content nav ul h2 img {
+	width: 24px;
+}
+
+header .content nav ul li {
+	padding: 12px 0;
+}
+header .content nav ul li:not(:first-of-type) {
+	border-top: 1px solid var(--medium-gray);
+}
+
+header .content nav ul li a {
+	font-weight: 500;
+	font-size: 1.8rem;
+	color: var(--white);
+}
+
+header .content > a {
+	bottom: 28px;
+	position: fixed;
+	display: flex;
+	gap: 12px;
+	font-size: 2rem;
+	font-weight: 500;
+	color: var(--white);
+	font-family: var(--ff-nunito);
+}
+/* END HEADER */
+
+/* TABLE */
+table {
+	width: 100%;
+	border-radius: 8px;
+	border-collapse: collapse;
+	border: 2px solid var(--medium-gray);
+}
+
+table thead {
+	border-bottom: 2px solid var(--medium-gray);
+}
+
+table thead th {
+	padding: 6px;
+	font-size: 2.8rem;
+	font-family: var(--ff-nunito);
+	border-left: 2px solid var(--medium-gray);
+	border-right: 2px solid var(--medium-gray);
+}
+
+table tbody td {
+	padding: 6px;
+	font-size: 1.8rem;
+	font-family: var(--ff-nunito);
+	border: 2px solid var(--medium-gray);
+}
+
+table tbody td picture {
+	width: 100%;
+	height: 96px;
+}
+
+table tbody td button {
+	font-size: 1.8rem;
+}
+/* END TABLE */

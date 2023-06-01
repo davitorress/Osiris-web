@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Osiris - CMS</title>
+
+		<link rel="icon" href="/assets/img/logos/3_osiris_white.png" type="image/png" />
+		<link rel="stylesheet" href="/assets/css/panc-form.css" />
+		<script src="/assets/js/panc-form.js" defer></script>
+	</head>
+	<body>
+		<div id="root">
+			<header>
+				<div class="content">
+					<picture>
+						<img src="/assets/img/logos/3_osiris_white.png" alt="Osiris" onclick="redirect('')" />
+					</picture>
+
+					<nav>
+						<ul>
+							<h2>
+								<img src="/assets/img/icons/leaf-filled-white.svg" alt="leaf filled white" />
+								PANCs
+							</h2>
+							<li><a href="/cms/pancs/criar">Criar</a></li>
+						</ul>
+					</nav>
+
+					<a href="/cms/logout">
+						Sair
+						<img src="/assets/img/icons/log-out-outline.svg" alt="log out outline" />
+					</a>
+				</div>
+			</header>
+
+			<main>
+				<h1>{{ "Editar a PANC" if panc else "Cadastrar uma nova PANC" }}</h1>
+				<form method="post" enctype="multipart/form-data">
+					<div class="input-container">
+						<label for="panc-img">Imagem demonstrativa:</label>
+						<div class="input-container">
+							{% if panc %}
+							<picture>
+								<img src="{{ panc.imagem }}" alt="" />
+							</picture>
+							<div class="rotate-icons">
+								<img src="/assets/img/icons/rotate-right.svg" alt="rotate right" onclick="rotate()" />
+								<img src="/assets/img/icons/rotate-left.svg" alt="rotate left" onclick="rotate()" />
+							</div>
+							{% endif %}
+						</div>
+						<input
+							type="hidden"
+							name="panc-img_base64"
+							id="panc-img_base64"
+							value="{{ panc.imagem if panc else '' }}"
+						/>
+						<input
+							type="number"
+							name="panc-img_angle"
+							id="panc-img_angle"
+							min="0"
+							max="180"
+							step="180"
+							value="0"
+							hidden
+						/>
+						<input type="file" name="panc-img" id="panc-img" accept=".png, .jpg, .jpeg" hidden />
+						<button type="button" class="btn btn-light">Alterar imagem</button>
+					</div>
+
+					<div class="input-container">
+						<label for="panc-name">Nome:</label>
+						<input
+							type="text"
+							name="panc-name"
+							id="panc-name"
+							placeholder="Digite o nome da PANC"
+							value="{{ panc.nome if panc else '' }}"
+						/>
+					</div>
+
+					<div class="input-container">
+						<label for="panc-description">Descrição curta:</label>
+						<textarea name="panc-description" id="panc-description" placeholder="Digite a descrição da PANC">
+{{ panc.descricao if panc else '' }}</textarea
+						>
+						<p class="text-right char-counter"><span>0</span>/240 caracteres</p>
+					</div>
+
+					<div class="input-container">
+						<label for="panc-benefits">Benefícios:</label>
+						<textarea name="panc-benefits" id="panc-benefits" placeholder="Digite os benefícios da PANC">
+{{ panc.beneficios if panc else '' }}</textarea
+						>
+					</div>
+
+					<div class="input-container">
+						<label for="panc-farm">Modo de cultivo (separado em etapas):</label>
+						<div class="fields fields-farm">
+							{% if panc %} {% for farm in panc.cultivo %}
+							<textarea name="panc-farm[]" placeholder="Descreva cada etapa do cultivo">
+{{ farm }}
+							</textarea
+							>
+							{% endfor %} {% else %}
+							<textarea name="panc-farm[]" placeholder="Descreva cada etapa do cultivo"></textarea>
+							{% endif %}
+						</div>
+						<p class="text-right" id="add-farm">+ Adicionar campo</p>
+						<p class="text-right" id="remove-farm">Remover o último campo</p>
+					</div>
+
+					<div class="buttons">
+						{% if panc %}
+						<button type="reset" onclick="redirect('')" class="btn btn-vine cancel-button">Cancelar</button>
+						<button type="submit" class="btn btn-light submit-button">Editar</button>
+						{% else %}
+						<button type="reset" onclick="redirect('')" class="btn btn-vine cancel-button">Cancelar</button>
+						<button type="submit" class="btn btn-light submit-button">Cadastrar</button>
+						{% endif %}
+					</div>
+				</form>
+			</main>
+		</div>
+	</body>
+</html>

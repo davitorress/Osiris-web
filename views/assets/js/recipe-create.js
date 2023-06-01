@@ -30,6 +30,18 @@ inputFile.addEventListener("change", () => {
 	}
 });
 
+const recipeDescription = document.querySelector("#recipe-description");
+const charCount = document.querySelector("p.char-counter span");
+
+recipeDescription.addEventListener("keydown", (ev) => {
+	if (recipeDescription.value.length >= 120 && ev.key !== "Backspace") {
+		ev.preventDefault();
+	}
+});
+recipeDescription.addEventListener("input", (ev) => {
+	charCount.innerText = ev.currentTarget.value.length;
+});
+
 const addPanc = document.querySelector("#add-panc");
 const removePanc = document.querySelector("#remove-panc");
 const fieldsPanc = document.querySelector(".fields-panc");
@@ -90,6 +102,7 @@ function rotate() {
 		previewImg.querySelector("picture img").style.transform = `rotate(${0}deg)`;
 		inputAngle.value = 0;
 	}
+	console.log(inputAngle.value);
 }
 
 function redirect(link) {
