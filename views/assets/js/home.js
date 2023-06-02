@@ -1,3 +1,5 @@
+import "./global.js";
+
 const pancsCarousel = document.querySelector(".pancs-carousel");
 const pancControlPrev = pancsCarousel.querySelector(".control-prev");
 const pancControlNext = pancsCarousel.querySelector(".control-next");

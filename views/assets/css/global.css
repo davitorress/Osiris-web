@@ -73,6 +73,12 @@ header.header-green {
 	height: 100%;
 }
 
+:is(header.header-white, header.header-green) .menu-icon {
+	width: 32px;
+	display: none;
+	cursor: pointer;
+}
+
 :is(header.header-white, header.header-green) nav ul {
 	list-style: none;
 	display: inline-flex;
@@ -126,6 +132,60 @@ header.header-white nav ul li a.link-button:hover {
 }
 header.header-green nav ul li a.link-button:hover {
 	background-color: var(--light-gray);
+}
+
+@media (max-width: 768px) {
+	:is(header.header-green, header.header-white) {
+		height: 55px;
+		padding: 8px 48px 8px 24px;
+	}
+
+	:is(header.header-white, header.header-green) nav ul {
+		gap: 24px;
+	}
+
+	:is(header.header-white, header.header-green) nav ul li a {
+		font-size: 1.6rem;
+	}
+}
+
+@media (max-width: 425px) {
+	:is(header.header-green, header.header-white) {
+		height: 55px;
+		padding: 8px 24px 8px 12px;
+		position: relative;
+	}
+
+	:is(header.header-white, header.header-green) .menu-icon {
+		display: block;
+	}
+
+	:is(header.header-white, header.header-green) nav {
+		right: 0;
+		top: 60px;
+		padding: 12px;
+		z-index: -10;
+		position: absolute;
+		border-top-left-radius: 8px;
+		border-bottom-left-radius: 8px;
+		transition: all 0.3s ease-in-out;
+	}
+	header.header-green nav {
+		background-color: var(--medium-green);
+	}
+	header.header-white nav {
+		background-color: var(--white);
+	}
+
+	:is(header.header-white, header.header-green) nav ul {
+		display: flex;
+		flex-direction: column;
+		align-items: start;
+	}
+
+	:is(header.header-white, header.header-green) nav ul li a {
+		font-size: 1.6rem;
+	}
 }
 /* END HEADER */
 
@@ -204,6 +264,29 @@ footer .copyright {
 	text-align: center;
 	font-family: var(--ff-ubuntu);
 	border-top: 4px solid var(--black);
+}
+
+@media (max-width: 768px) {
+	footer .content {
+		padding: 48px;
+	}
+
+	footer .content h3 {
+		font-size: 2.4rem;
+	}
+
+	footer .content picture {
+		width: 146px;
+		height: 148px;
+	}
+
+	footer .content .footer-app .download-buttons img {
+		height: 32px;
+	}
+
+	footer :is(.content .footer-links ul li a, .content .footer-app p, .copyright) {
+		font-size: 1.6rem;
+	}
 }
 /* END FOOTER */
 

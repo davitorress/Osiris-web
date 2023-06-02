@@ -26,6 +26,20 @@
 .hero img {
 	width: 400px;
 }
+
+@media (max-width: 768px) {
+	.hero {
+		padding: 48px;
+	}
+
+	.hero h1 {
+		font-size: 3.8rem;
+	}
+
+	.hero img {
+		width: 280px;
+	}
+}
 /* END HERO */
 
 /* ABOUT PANCS */
