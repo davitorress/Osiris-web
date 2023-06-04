@@ -8,7 +8,20 @@
 
 		<link rel="icon" href="assets/img/logos/3_osiris.png" type="image/png" />
 		<link rel="stylesheet" href="assets/css/pancs.css" />
-		<script src="assets/js/pancs.js" defer></script>
+		<script type="module" src="/assets/js/pancs.js" defer></script>
+		<script>
+			async function favPanc(id, fav) {
+				console.log("chego");
+				await fetch("/api/panc/fav", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ id, fav }),
+				});
+				window.location.reload();
+			}
+		</script>
 	</head>
 	<body>
 		<div id="root">
@@ -17,6 +30,7 @@
 					<img src="assets/img/logos/crop_1_osiris_white.png" alt="Osiris" />
 				</picture>
 
+				<img class="menu-icon" src="/assets/img/icons/menu-white.svg" alt="menu icon" />
 				<nav>
 					<ul>
 						<li><a href="/">Home</a></li>

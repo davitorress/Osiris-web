@@ -9,6 +9,22 @@
 		<link rel="icon" href="/assets/img/logos/3_osiris_white.png" type="image/png" />
 		<link rel="stylesheet" href="/assets/css/panc-form.css" />
 		<script src="/assets/js/panc-form.js" defer></script>
+		<script src="/assets/js/cms.js"></script>
+		<script>
+			function rotate() {
+				const inputAngle = document.querySelector(".input-container #panc-img_angle");
+				const previewImg = document.querySelector(".input-container picture img");
+				const angle = inputAngle.value;
+
+				if (angle == 0) {
+					previewImg.style.transform = `rotate(${180}deg)`;
+					inputAngle.value = 180;
+				} else {
+					previewImg.style.transform = `rotate(${0}deg)`;
+					inputAngle.value = 0;
+				}
+			}
+		</script>
 	</head>
 	<body>
 		<div id="root">

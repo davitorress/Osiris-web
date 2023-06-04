@@ -1,24 +1,7 @@
-function redirect(link) {
-	const origin = window.location.origin;
-	window.location.href = origin + "/cms" + link;
-}
-
 const btnSetImg = document.querySelector(".input-container button");
 const inputFile = document.querySelector(".input-container input[type='file']");
 const previewImg = document.querySelector(".input-container .input-container");
 const inputImg = document.querySelector(".input-container #panc-img_base64");
-const inputAngle = document.querySelector(".input-container #panc-img_angle");
-
-function rotate() {
-	const angle = inputAngle.value;
-	if (angle == 0) {
-		previewImg.querySelector("picture img").style.transform = `rotate(${180}deg)`;
-		inputAngle.value = 180;
-	} else {
-		previewImg.querySelector("picture img").style.transform = `rotate(${0}deg)`;
-		inputAngle.value = 0;
-	}
-}
 
 btnSetImg.addEventListener("click", () => {
 	inputFile.click();

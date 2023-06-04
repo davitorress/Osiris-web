@@ -22,6 +22,13 @@ main .back-icon {
 	height: 56px;
 	position: absolute;
 }
+
+@media (max-width: 768px) {
+	main .back-icon {
+		width: 48px;
+		height: 48px;
+	}
+}
 /* END MAIN CONTAINER */
 
 /* CONTENT CONTAINER */
@@ -36,6 +43,25 @@ main .back-icon {
 .content picture {
 	width: 400px;
 	height: 400px;
+}
+
+@media (max-width: 768px) {
+	.content {
+		grid-template-columns: 250px 1fr;
+		gap: 84px;
+	}
+
+	.content picture {
+		width: 250px;
+		height: 250px;
+	}
+}
+
+@media (max-width: 425px) {
+	.content {
+		grid-template-columns: 1fr;
+		justify-items: center;
+	}
 }
 /* END CONTENT CONTAINER */
 
@@ -90,5 +116,11 @@ form .buttons a span {
 	font-weight: 900;
 	color: var(--vine);
 	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	form h1 {
+		font-size: 3.8rem;
+	}
 }
 /* END FORM */

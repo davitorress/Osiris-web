@@ -98,10 +98,11 @@ def init_app(app, con):
         userId = None
         if "userId" in session:
             userId = session["userId"]
+        else:
+            return redirect(url_for("login"))
         if request.method == "POST":
             recipe = Recipe.create(con, request.form, request.files)
-            if userId is not None:
-                User.new_recipe(con, userId, recipe)
+            User.new_recipe(con, userId, recipe)
             return redirect("/receitas/" + recipe)
         pancs = Panc.get_all_names(con)
         return render_template("criar-receita.html", userId=userId, pancs=pancs)

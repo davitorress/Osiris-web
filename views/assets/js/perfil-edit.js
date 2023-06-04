@@ -1,3 +1,5 @@
+import "./global.js";
+
 const btnSetImg = document.querySelector("img.edit-icon");
 const avatarImg = document.querySelector("img#avatar");
 const inputFile = document.querySelector("input#img");
@@ -20,8 +22,3 @@ inputFile.addEventListener("change", () => {
 		reader.readAsDataURL(image);
 	}
 });
-
-function redirect(link) {
-	const origin = window.location.origin;
-	window.location.href = origin + link;
-}

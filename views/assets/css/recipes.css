@@ -10,6 +10,24 @@
 button.create-recipe {
 	font-size: 2rem;
 }
+
+@media (max-width: 768px) {
+	.actions {
+		grid-template-columns: 1fr max-content;
+		gap: 36px;
+	}
+
+	button.create-recipe {
+		font-size: 1.8rem;
+	}
+}
+
+@media (max-width: 425px) {
+	.actions {
+		grid-template-columns: 1fr;
+		gap: 18px;
+	}
+}
 /* END ACTIONS CONTAINER */
 
 /* RECIPES */
@@ -48,7 +66,7 @@ button.create-recipe {
 .recipes .recipes-grid .recipe-item picture img:not(.favorite-icon) {
 	border-radius: 8px;
 }
-.recipes .recipes-grid .recipe-item picture .favorite-icon {
+.recipes .recipes-grid .recipe-item picture a {
 	top: 0;
 	right: 0;
 	z-index: 10;
@@ -99,5 +117,74 @@ button.create-recipe {
 .recipes .recipes-grid .recipe-item .text ul li {
 	display: flex;
 	gap: 8px;
+}
+
+@media (max-width: 768px) {
+	.recipes h1 {
+		font-size: 3.8rem;
+	}
+
+	.recipes .recipes-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.recipes .recipes-grid .recipe-item {
+		grid-template-columns: 184px 1fr;
+	}
+
+	.recipes .recipes-grid .recipe-item picture {
+		width: 184px;
+		height: 184px;
+	}
+
+	.recipes .recipes-grid .recipe-item picture a {
+		width: 40px;
+		height: 40px;
+	}
+
+	.recipes .recipes-grid .recipe-item .text h3 {
+		font-size: 2.4rem;
+	}
+
+	.recipes .recipes-grid .recipe-item .text .like-button {
+		font-size: 1.8rem;
+		align-items: center;
+	}
+	.recipes .recipes-grid .recipe-item .text .like-button img {
+		width: 20px;
+	}
+
+	.recipes .recipes-grid .recipe-item .text ul {
+		flex-direction: row;
+		flex-wrap: wrap;
+		font-size: 1.6rem;
+	}
+	.recipes .recipes-grid .recipe-item .text ul li img {
+		width: 18px;
+	}
+}
+
+@media (max-width: 425px) {
+	.recipes h1 {
+		font-size: 3.2rem;
+	}
+
+	.recipes .recipes-grid .recipe-item {
+		grid-template-columns: 164px 1fr;
+	}
+
+	.recipes .recipes-grid .recipe-item picture {
+		width: 164px;
+		height: 164px;
+	}
+
+	.recipes .recipes-grid .recipe-item picture a {
+		width: 40px;
+		height: 40px;
+	}
+
+	.recipes .recipes-grid .recipe-item .text h3 {
+		font-size: 2.2rem;
+	}
 }
 /* END RECIPES */

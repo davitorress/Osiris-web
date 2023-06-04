@@ -5,6 +5,12 @@ main {
 	flex-direction: row;
 	gap: 72px;
 }
+
+@media (max-width: 768px) {
+	main {
+		flex-direction: column;
+	}
+}
 /* END MAIN CONTAINER */
 
 /* INFO CONTAINER */
@@ -37,6 +43,23 @@ main {
 
 .info button {
 	font-size: 2.4rem;
+}
+
+@media (max-width: 768px) {
+	.info {
+		width: 100%;
+	}
+
+	.info picture {
+		margin: 0 auto;
+	}
+
+	.info button {
+		font-size: 2rem;
+	}
+	.info button img {
+		width: 24px;
+	}
 }
 /* END INFO CONTAINER */
 
@@ -152,5 +175,26 @@ main {
 	font-size: 2.4rem;
 	color: var(--dark-green);
 	font-family: var(--ff-nunito);
+}
+
+@media (max-width: 768px) {
+	.content {
+		width: 100%;
+	}
+
+	:is(.pancs, .recipes, .created)
+		:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+		:is(.control-prev, .control-next) {
+		display: none;
+	}
+
+	:is(.pancs, .recipes, .created)
+		:is(.pancs-carousel, .recipes-carousel, .created-carousel)
+		:is(.pancs-list, .recipes-list, .created-list) {
+		padding: 20px 0;
+		margin-left: 0;
+		margin-right: 0;
+		overflow-x: scroll;
+	}
 }
 /* END CAROUSELS CONTAINER */
