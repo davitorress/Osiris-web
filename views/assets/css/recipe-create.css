@@ -6,6 +6,12 @@ h1 {
 	font-family: var(--ff-ubuntu);
 }
 
+@media (max-width: 768px) {
+	h1 {
+		font-size: 3.8rem;
+	}
+}
+
 /* FORM */
 form {
 	width: 100%;
