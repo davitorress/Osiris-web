@@ -523,12 +523,13 @@
 .recipes .recipes-carousel .recipes-list .recipe-item h3 {
 	font-size: 2.4rem;
 }
-.recipes .recipes-carousel .recipes-list .recipe-item p {
+.recipes .recipes-carousel .recipes-list .recipe-item a {
 	font-weight: 700;
 	font-size: 2.2rem;
 	color: var(--light-green);
+	cursor: pointer;
 }
-.recipes .recipes-carousel .recipes-list .recipe-item p img {
+.recipes .recipes-carousel .recipes-list .recipe-item a img {
 	width: 22px;
 	cursor: pointer;
 }
@@ -568,11 +569,11 @@
 		font-size: 1.8rem;
 	}
 
-	.recipes .recipes-carousel .recipes-list .recipe-item p {
+	.recipes .recipes-carousel .recipes-list .recipe-item a {
 		font-size: 1.6rem;
 	}
 
-	.recipes .recipes-carousel .recipes-list .recipe-item p img {
+	.recipes .recipes-carousel .recipes-list .recipe-item a img {
 		width: 16px;
 	}
 }

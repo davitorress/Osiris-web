@@ -8,16 +8,20 @@ from bson import ObjectId
 
 
 class Recipe:
-    def get_more_liked(db):
-        recipes = db["receita"].find().sort("likes", -1).limit(6)
+    def get_more_liked(db, userId):
+        recipes = list(db["receita"].find().sort("likes", -1).limit(6))
+        user = db["usuario"].find_one({"_id": ObjectId(userId)})
+        for item in recipes:
+            item["is_liked"] = str(item["_id"]) in user["likes"] if userId is not None else False
         return recipes
 
     def get_all(db, userId):
         recipes = list(db["receita"].find().sort("likes", -1))
         if userId is not None:
-            favorites = db["usuario"].find_one({"_id": ObjectId(userId)}).get("salvos")
+            user = db["usuario"].find_one({"_id": ObjectId(userId)})
             for item in recipes:
-                item["is_favorite"] = str(item["_id"]) in favorites
+                item["is_favorite"] = str(item["_id"]) in user["salvos"]
+                item["is_liked"] = str(item["_id"]) in user["likes"]
         return recipes
 
     def get_search(db, userId, search):
@@ -34,22 +38,27 @@ class Recipe:
             .sort("likes", -1)
         )
         if userId is not None:
-            favorites = db["usuario"].find_one({"_id": ObjectId(userId)}).get("salvos")
+            user = db["usuario"].find_one({"_id": ObjectId(userId)})
             for item in recipes:
-                item["is_favorite"] = str(item["_id"]) in favorites
+                item["is_favorite"] = str(item["_id"]) in user["salvos"]
+                item["is_liked"] = str(item["_id"]) in user["likes"]
         return recipes
 
     def get_recipe(db, id, userId):
-        favorites = db["usuario"].find_one({"_id": ObjectId(userId)}).get("salvos")
-        user_recipes = db["usuario"].find_one({"_id": ObjectId(userId)}).get("receitas")
+        user = db["usuario"].find_one({"_id": ObjectId(userId)})
         recipe = db["receita"].find_one({"_id": ObjectId(id)})
-        recipe["is_favorite"] = str(recipe["_id"]) in favorites
-        recipe["author"] = str(recipe["_id"]) in user_recipes
+        recipe["is_favorite"] = str(recipe["_id"]) in user["salvos"] if userId is not None else False
+        recipe["is_liked"] = str(recipe["_id"]) in user["likes"] if userId is not None else False
+        recipe["author"] = str(recipe["_id"]) in user["receitas"] if userId is not None else False
         return recipe
 
     def add_like(db, id):
         likes = db["receita"].find_one({"_id": ObjectId(id)}).get("likes")
         db["receita"].update_one({"_id": ObjectId(id)}, {"$set": {"likes": likes + 1}})
+
+    def remove_like(db, id):
+        likes = db["receita"].find_one({"_id": ObjectId(id)}).get("likes")
+        db["receita"].update_one({"_id": ObjectId(id)}, {"$set": {"likes": likes - 1}})
 
     def create(db, data, files):
         img_pil = Image.open(io.BytesIO(files["recipe-img"].read()))

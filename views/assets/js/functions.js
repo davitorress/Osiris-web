@@ -25,13 +25,13 @@ async function favRecipe(id, fav) {
 	window.location.reload();
 }
 
-async function likeRecipe(id) {
+async function likeRecipe(id, like) {
 	await fetch("/api/recipe/like", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
-		body: JSON.stringify({ id }),
+		body: JSON.stringify({ id, like }),
 	});
 	window.location.reload();
 }

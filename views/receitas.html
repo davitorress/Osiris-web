@@ -63,10 +63,17 @@
 							</picture>
 							<div class="text">
 								<h3>{{ item.nome }}</h3>
-								<a href="" onclick="likeRecipe('{{ item._id }}')" class="like-button">
+								{% if item.is_liked %}
+								<a href="" onclick="likeRecipe('{{ item._id }}', false)" class="like-button">
+									{{ item.likes }} likes
+									<img src="assets/img/icons/thumbs-up-filled-light-green.svg" alt="thumbs up filled light green" />
+								</a>
+								{% else %}
+								<a href="" onclick="likeRecipe('{{ item._id }}', true)" class="like-button">
 									{{ item.likes }} likes
 									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
 								</a>
+								{% endif %}
 								<ul>
 									{% for panc in item.pancs %}
 									<li>
@@ -102,10 +109,17 @@
 							</picture>
 							<div class="text">
 								<h3>{{ recipe.nome }}</h3>
-								<a href="" onclick="likeRecipe('{{ recipe._id }}')" class="like-button">
+								{% if recipe.is_liked %}
+								<a href="" onclick="likeRecipe('{{ recipe._id }}', false)" class="like-button">
+									{{ recipe.likes }} likes
+									<img src="assets/img/icons/thumbs-up-filled-light-green.svg" alt="thumbs up filled light green" />
+								</a>
+								{% else %}
+								<a href="" onclick="likeRecipe('{{ recipe._id }}', true)" class="like-button">
 									{{ recipe.likes }} likes
 									<img src="assets/img/icons/thumbs-up-outline-light-green.svg" alt="thumbs up outline light green" />
 								</a>
+								{% endif %}
 								<ul>
 									{% for panc in recipe.pancs %}
 									<li>

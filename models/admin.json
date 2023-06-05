@@ -1,0 +1,12 @@
+[{
+  "_id": {
+    "$oid": "6478ff54480ed76f7e8f4875"
+  },
+  "email": "osiris@gmail.com",
+  "senha": {
+    "$binary": {
+      "base64": "JDJiJDEyJDZSTVpaZ1FJLmxmMXB3NVNMRUMzZ3VJd3F6Qnl0RFY1bHFNT21YQ1QvSVYxY1hwREZQOVRt",
+      "subType": "00"
+    }
+  }
+}]

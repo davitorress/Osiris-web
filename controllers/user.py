@@ -23,6 +23,7 @@ class User:
                 "favoritos": [],
                 "salvos": [],
                 "receitas": [],
+                "likes": [],
                 "imagem": "",
             }
         )
@@ -43,6 +44,14 @@ class User:
                 db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"salvos": recipeId}})
         else:
             db["usuario"].update_one({"_id": ObjectId(id)}, {"$pull": {"salvos": recipeId}})
+
+    def set_recipe_like(db, id, recipeId, like):
+        if like == True or like == "true":
+            liked = db["usuario"].find_one({"_id": ObjectId(id), "likes": recipeId})
+            if not liked:
+                db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"likes": recipeId}})
+        else:
+            db["usuario"].update_one({"_id": ObjectId(id)}, {"$pull": {"likes": recipeId}})
 
     def new_recipe(db, id, recipeId):
         db["usuario"].update_one({"_id": ObjectId(id)}, {"$push": {"receitas": recipeId}})

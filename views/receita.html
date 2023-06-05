@@ -51,10 +51,17 @@
 							<img src="/assets/img/icons/bookmark-outline.svg" alt="bookmark outline" />
 							{% endif %}
 						</a>
+						{% if recipe.is_liked %}
+						<a href="/receitas/{{ recipe._id }}?like=false" class="fav-button">
+							{{ recipe.likes }} likes
+							<img src="/assets/img/icons/thumbs-up-filled-medium-green.svg" alt="thumbs up filled medium green" />
+						</a>
+						{% else %}
 						<a href="/receitas/{{ recipe._id }}?like=true" class="fav-button">
 							{{ recipe.likes }} likes
 							<img src="/assets/img/icons/thumbs-up-outline-medium-green.svg" alt="thumbs up outline medium green" />
 						</a>
+						{% endif %}
 					</section>
 
 					<section class="description">

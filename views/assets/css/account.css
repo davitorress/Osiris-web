@@ -36,6 +36,7 @@ main .back-icon {
 	width: 100%;
 	display: grid;
 	grid-template-columns: 400px 1fr;
+	justify-items: center;
 	align-items: center;
 	gap: 112px;
 }

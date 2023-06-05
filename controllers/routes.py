@@ -13,7 +13,7 @@ def init_app(app, con):
         if "userId" in session:
             userId = session["userId"]
         pancs = Panc.get_highlight(con)
-        recipes = Recipe.get_more_liked(con)
+        recipes = Recipe.get_more_liked(con, userId)
         return render_template("index.html", userId=userId, pancs=pancs, recipes=recipes)
 
     @app.route("/login", methods=["GET", "POST"])
@@ -89,7 +89,11 @@ def init_app(app, con):
         if request.args.get("save") is not None and userId is not None:
             User.set_recipe_favorite(con, userId, id, request.args.get("save"))
         if request.args.get("like") is not None and userId is not None:
-            Recipe.add_like(con, id)
+            if request.args.get("like") == "true":
+                Recipe.add_like(con, id)
+            else:
+                Recipe.remove_like(con, id)
+            User.set_recipe_like(con, userId, id, request.args.get("like"))
         recipe = Recipe.get_recipe(con, id, userId)
         return render_template("receita.html", userId=userId, recipe=recipe)
 
@@ -166,7 +170,11 @@ def init_app(app, con):
     @app.route("/api/recipe/like", methods=["POST"])
     def recipe_like():
         if "userId" in session:
-            Recipe.add_like(con, request.get_json()["id"])
+            if request.get_json()["like"]:
+                Recipe.add_like(con, request.get_json()["id"])
+            else:
+                Recipe.remove_like(con, request.get_json()["id"])
+            User.set_recipe_like(con, session["userId"], request.get_json()["id"], request.get_json()["like"])
         return "success"
 
     @app.route("/cms")
