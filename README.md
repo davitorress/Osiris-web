@@ -5,10 +5,10 @@
 ---
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![GitHub repo size](https://img.shields.io/github/repo-size/RianYuri/Learnify)
-![GitHub](https://img.shields.io/github/license/RianYuri/Learnify)
-![GitHub language count](https://img.shields.io/github/languages/count/RianYuri/Learnify)
-![GitHub last commit](https://img.shields.io/github/last-commit/RianYuri/Learnify)
+![GitHub repo size](https://img.shields.io/github/repo-size/davitorress/Osiris-web)
+![GitHub](https://img.shields.io/github/license/davitorress/Osiris-web)
+![GitHub language count](https://img.shields.io/github/languages/count/davitorress/Osiris-web)
+![GitHub last commit](https://img.shields.io/github/last-commit/davitorress/Osiris-web)
 
 # Tecnologias utilizadas
 
